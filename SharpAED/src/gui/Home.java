@@ -10,10 +10,6 @@ import javax.swing.JMenu;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 
 public class Home extends JDialog {
@@ -27,12 +23,12 @@ public class Home extends JDialog {
 	private JMenu mnNewMenu_3;
 	private JMenu mnNewMenu_4;
 	private JPanel panel;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
-	private JButton btnNewButton_4;
-	private JButton btnNewButton_5;
+	private JButton btnRegistrarVenta;
+	private JButton btnAgregarCliente;
+	private JButton btnListarProductos;
+	private JButton btnAgregarProducto;
+	private JButton btnGenerarReporte;
+	private JButton btnConfig;
 	private JMenu mnNewMenu_5;
 	private JMenu mnNewMenu_6;
 	private JMenuItem mntmNewMenuItem;
@@ -65,6 +61,7 @@ public class Home extends JDialog {
 	 * Create the dialog.
 	 */
 	public Home() {
+		setTitle("SharpManager");
 		setBounds(100, 100, 823, 509);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,28 +73,28 @@ public class Home extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(new GridLayout(0, 3, 10, 10));
 		
-		btnNewButton = new JButton("Registrar Venta");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnRegistrarVenta = new JButton("Registrar Venta");
+		btnRegistrarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				actionPerformedBtnNewButton(e);
+				actionPerformedBtnRegistrarVenta(e);
 			}
 		});
-		panel.add(btnNewButton);
+		panel.add(btnRegistrarVenta);
 		
-		btnNewButton_1 = new JButton("Agregar Cliente");
-		panel.add(btnNewButton_1);
+		btnAgregarCliente = new JButton("Agregar Cliente");
+		panel.add(btnAgregarCliente);
 		
-		btnNewButton_2 = new JButton("Listar Productos");
-		panel.add(btnNewButton_2);
+		btnListarProductos = new JButton("Listar Productos");
+		panel.add(btnListarProductos);
 		
-		btnNewButton_3 = new JButton("Agregar Producto");
-		panel.add(btnNewButton_3);
+		btnAgregarProducto = new JButton("Agregar Producto");
+		panel.add(btnAgregarProducto);
 		
-		btnNewButton_4 = new JButton("Generar Reporte");
-		panel.add(btnNewButton_4);
+		btnGenerarReporte = new JButton("Generar Reporte");
+		panel.add(btnGenerarReporte);
 		
-		btnNewButton_5 = new JButton("Configuración");
-		panel.add(btnNewButton_5);
+		btnConfig = new JButton("Configuración");
+		panel.add(btnConfig);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -153,23 +150,8 @@ public class Home extends JDialog {
 		mnNewMenu_4 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_4);
 	}
-	protected void actionPerformedBtnNewButton(ActionEvent e) {
+	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
+		CrearVenta.abrirVentana();
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
+	
 }
