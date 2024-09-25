@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import utilidades.Validacion;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -68,25 +71,11 @@ public class Login extends JFrame {
 	protected void actionPerformedBtnLogin(ActionEvent e) {
 		String usuario = txtUsuario.getText();
 		String contrasena = new String(txtContrasena.getPassword());
-		verificarCredenciales(usuario, contrasena);
+		Validacion.validarCredenciales(usuario, contrasena, this);
 		
 		
 	}
 
-	private void cerrarVentana() {
-        dispose();
-        Home.abrirVentana();
-	}
-
-	private void verificarCredenciales(String usuario, String contrasena) {
-		if (usuario.equals("admin") && contrasena.equals("admin")) {
-			System.out.println("Credenciales correctas");
-			cerrarVentana();
-		} else if (usuario.equals("user") && contrasena.equals("user")) {
-			System.out.println("Credenciales correctas");
-			cerrarVentana();
-		} else {
-			System.out.println("Credenciales incorrectas");
-		}
-	}
+	
+	
 }

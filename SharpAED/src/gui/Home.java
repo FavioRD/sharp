@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -12,6 +10,11 @@ import javax.swing.JMenu;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
 
 public class Home extends JDialog {
 
@@ -30,6 +33,18 @@ public class Home extends JDialog {
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
+	private JMenu mnNewMenu_5;
+	private JMenu mnNewMenu_6;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_2;
+	private JMenuItem mntmNewMenuItem_3;
+	private JMenuItem mntmNewMenuItem_4;
+	private JMenuItem mntmNewMenuItem_5;
+	private JMenuItem mntmNewMenuItem_6;
+	private JMenuItem mntmNewMenuItem_7;
+	private JMenuItem mntmNewMenuItem_8;
+	private JMenuItem mntmNewMenuItem_9;
 
 	/**
 	 * Launch the application.
@@ -90,6 +105,42 @@ public class Home extends JDialog {
 		mnNewMenu = new JMenu("Mantenimiento");
 		menuBar.add(mnNewMenu);
 		
+		mnNewMenu_5 = new JMenu("Productos");
+		mnNewMenu.add(mnNewMenu_5);
+		
+		mntmNewMenuItem = new JMenuItem("Agregar Producto");
+		mnNewMenu_5.add(mntmNewMenuItem);
+		
+		mntmNewMenuItem_1 = new JMenuItem("Listar Productos");
+		mnNewMenu_5.add(mntmNewMenuItem_1);
+		
+		mntmNewMenuItem_2 = new JMenuItem("Buscar  Producto");
+		mnNewMenu_5.add(mntmNewMenuItem_2);
+		
+		mntmNewMenuItem_4 = new JMenuItem("Modificar Producto");
+		mnNewMenu_5.add(mntmNewMenuItem_4);
+		
+		mntmNewMenuItem_3 = new JMenuItem("Borrar Producto");
+		mnNewMenu_5.add(mntmNewMenuItem_3);
+		
+		mnNewMenu_6 = new JMenu("Clientes");
+		mnNewMenu.add(mnNewMenu_6);
+		
+		mntmNewMenuItem_5 = new JMenuItem("Agregar Cliente");
+		mnNewMenu_6.add(mntmNewMenuItem_5);
+		
+		mntmNewMenuItem_6 = new JMenuItem("Buscar Cliente");
+		mnNewMenu_6.add(mntmNewMenuItem_6);
+		
+		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
+		mnNewMenu_6.add(mntmNewMenuItem_7);
+		
+		mntmNewMenuItem_8 = new JMenuItem("Modificar Cliente");
+		mnNewMenu_6.add(mntmNewMenuItem_8);
+		
+		mntmNewMenuItem_9 = new JMenuItem("Borrar Cliente");
+		mnNewMenu_6.add(mntmNewMenuItem_9);
+		
 		mnNewMenu_1 = new JMenu("Ventas");
 		menuBar.add(mnNewMenu_1);
 		
@@ -103,5 +154,22 @@ public class Home extends JDialog {
 		menuBar.add(mnNewMenu_4);
 	}
 	protected void actionPerformedBtnNewButton(ActionEvent e) {
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

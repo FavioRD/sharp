@@ -10,7 +10,7 @@ public class Producto {
 
 	
 	public Producto(String nombre, double precio, int stockActual, int stockMinimo, int stockMaximo) {
-		this.codigoProducto++;
+		Producto.codigoProducto++;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stockActual = stockActual;
