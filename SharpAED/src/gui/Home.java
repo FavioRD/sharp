@@ -152,6 +152,8 @@ public class Home extends JDialog {
 	}
 	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
 		CrearVenta.abrirVentana();
+		
+		
 	}
 	
 }
