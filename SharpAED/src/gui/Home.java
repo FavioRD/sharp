@@ -151,8 +151,8 @@ public class Home extends JDialog {
 		menuBar.add(mnNewMenu_4);
 	}
 	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
+
 		CrearVenta.abrirVentana();
-		
 		
 	}
 	
