@@ -1,10 +1,13 @@
-package guiVentas;
+package gui;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Venta;
+
 import javax.swing.JToolBar;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -14,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Font;
-import guiVentas.Ventas;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -22,7 +24,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.Window.Type;
 
-public class gui extends JFrame implements ActionListener {
+public class CrearVenta extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -40,11 +42,12 @@ public class gui extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gui frame = new gui();
+					CrearVenta frame = new CrearVenta();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,11 +55,14 @@ public class gui extends JFrame implements ActionListener {
 			}
 		});
 	}
+	
+	
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public gui() {
+	public CrearVenta() {
 		setType(Type.UTILITY);
 		setTitle("SharpStore-Ventas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,13 +152,13 @@ public class gui extends JFrame implements ActionListener {
 			actionPerformedBtn_crear(e);
 		}
 	}
-	Ventas a=new Ventas("Leche",1.5,2);
-	Ventas b=new Ventas("Arroz",2.0,2);	
-	Ventas c=new Ventas("Cereal",3.0,2);
-	Ventas d=new Ventas("pepe",8.2,2);
-	Ventas e=new Ventas("Fideos",5.5,2);
-	Ventas f=new Ventas("Papa",2.4,2);
-	Ventas g=new Ventas("Pollo",1.2,2);
+	Venta a=new Venta("Leche",1.5,2);
+	Venta b=new Venta("Arroz",2.0,2);	
+	Venta c=new Venta("Cereal",3.0,2);
+	Venta d=new Venta("pepe",8.2,2);
+	Venta e=new Venta("Fideos",5.5,2);
+	Venta f=new Venta("Papa",2.4,2);
+	Venta g=new Venta("Pollo",1.2,2);
 	private JTextField txtCliente;
 	private JScrollPane scrollPane;
 	private JTextArea txtS;
