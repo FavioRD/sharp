@@ -2,8 +2,6 @@ package clases;
 
 public class Cliente {
 
-	//atributos
-	
 	private int codigoCliente;
 	private String nombres;
 	private String apellidos;
@@ -13,7 +11,7 @@ public class Cliente {
 
 	private static int contador = 1001;
 
-	//constructor
+	// constructor
 	public Cliente(String nombres, String apellidos, String direccion, String telefono, String dni) {
 
 		this.codigoCliente = contador++;
@@ -23,29 +21,34 @@ public class Cliente {
 		this.telefono = telefono;
 		this.dni = dni;
 	}
-	
-	//set 
+
+	// set
 	public void setCodigoCliente(int codigoCliente) {
 		this.codigoCliente = codigoCliente;
 	}
+
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
+
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
-	//get
-	
+
+	// get
+
 	public int getCodigoCliente() {
 		return codigoCliente;
 	}
@@ -69,6 +72,6 @@ public class Cliente {
 	public String getDni() {
 		return dni;
 	}
-	
+
 
 }
