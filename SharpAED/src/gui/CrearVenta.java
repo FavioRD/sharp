@@ -1,4 +1,3 @@
-
 package gui;
 
 import java.awt.EventQueue;
@@ -6,9 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import clases.Venta;
-
 import javax.swing.JToolBar;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -18,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Font;
+import clases.Venta;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -43,9 +40,7 @@ public class CrearVenta extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	
-	
-	public static void abrirVentana(){
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,10 +52,7 @@ public class CrearVenta extends JFrame implements ActionListener {
 			}
 		});
 		
-		
 	}
-	
-	
 
 	/**
 	 * Create the frame.
@@ -132,6 +124,7 @@ public class CrearVenta extends JFrame implements ActionListener {
 		contentPane.add(btn_crear);
 		
 		btn_cancelar = new JButton("Cancelar");
+		btn_cancelar.addActionListener(this);
 		btn_cancelar.setBorderPainted(false);
 		btn_cancelar.setBackground(new Color(255, 128, 128));
 		btn_cancelar.setBounds(131, 205, 89, 23);
@@ -151,49 +144,150 @@ public class CrearVenta extends JFrame implements ActionListener {
 		scrollPane.setViewportView(txtS);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btn_cancelar) {
+			actionPerformedBtn_cancelar(e);
+		}
 		if (e.getSource() == btn_crear) {
 			actionPerformedBtn_crear(e);
 		}
 	}
-	Venta a=new Venta("Leche",1.5,2);
-	Venta b=new Venta("Arroz",2.0,2);	
-	Venta c=new Venta("Cereal",3.0,2);
-	Venta d=new Venta("pepe",8.2,2);
-	Venta e=new Venta("Fideos",5.5,2);
-	Venta f=new Venta("Papa",2.4,2);
-	Venta g=new Venta("Pollo",1.2,2);
 	private JTextField txtCliente;
 	private JScrollPane scrollPane;
 	private JTextArea txtS;
 	
+	Venta a=new Venta("leche",1,1);
+	Venta b=new Venta("arroz",2,1);
+	Venta c=new Venta("cereal",3,1);		
+	Venta d=new Venta("pepe",4,1);
+	Venta e=new Venta("fideos",5,1);
+	Venta f=new Venta("papa",6,1);
+	Venta g=new Venta("pollo",7,1);
 	protected void actionPerformedBtn_crear(ActionEvent e) {
 		
 		cliente();
-		listado();
-		
+		cantidad();
+		producto();
 		
 	}
-	void listado() {
+
+	void  imprimir_a() {
 		imprimir("Producto : "+a.getProducto());
 		imprimir("Precio Unitario : " +a.getPrecio());
 		imprimir("Cantidad : "+a.getCantidad());
 		imprimir("SubTotal : "+a.subTotal());
 		imprimir("Descuento : "+a.descuento());
 		imprimir("Total a Pagar : "+a.total());
-		
 	}
+	
+	void imprimir_b() {
+		imprimir("Producto : "+b.getProducto());
+		imprimir("Precio Unitario : " +b.getPrecio());
+		imprimir("Cantidad : "+b.getCantidad());
+		imprimir("SubTotal : "+b.subTotal());
+		imprimir("Descuento : "+b.descuento());
+		imprimir("Total a Pagar : "+b.total());
+	}
+	
+	void imprimir_c() {
+		imprimir("Producto : "+c.getProducto());
+		imprimir("Precio Unitario : " +c.getPrecio());
+		imprimir("Cantidad : "+c.getCantidad());
+		imprimir("SubTotal : "+c.subTotal());
+		imprimir("Descuento : "+c.descuento());
+		imprimir("Total a Pagar : "+c.total());
+	}
+    void imprimir_d() {
+    	imprimir("Producto : "+d.getProducto());
+		imprimir("Precio Unitario : " +d.getPrecio());
+		imprimir("Cantidad : "+d.getCantidad());
+		imprimir("SubTotal : "+d.subTotal());
+		imprimir("Descuento : "+d.descuento());
+		imprimir("Total a Pagar : "+d.total());
+	}
+    void imprimir_e() {
+    	imprimir("Producto : "+e.getProducto());
+		imprimir("Precio Unitario : " +e.getPrecio());
+		imprimir("Cantidad : "+e.getCantidad());
+		imprimir("SubTotal : "+e.subTotal());
+		imprimir("Descuento : "+e.descuento());
+		imprimir("Total a Pagar : "+e.total());
+     }
+    void  imprimir_f() {
+		imprimir("Producto : "+f.getProducto());
+		imprimir("Precio Unitario : " +f.getPrecio());
+		imprimir("Cantidad : "+f.getCantidad());
+		imprimir("SubTotal : "+f.subTotal());
+		imprimir("Descuento : "+f.descuento());
+		imprimir("Total a Pagar : "+f.total());
+	}
+    void  imprimir_g() {
+		imprimir("Producto : "+g.getProducto());
+		imprimir("Precio Unitario : " +g.getPrecio());
+		imprimir("Cantidad : "+g.getCantidad());
+		imprimir("SubTotal : "+g.subTotal());
+		imprimir("Descuento : "+g.descuento());
+		imprimir("Total a Pagar : "+g.total());
+	}
+	
 	void cliente() {
 		String nomClie;
-	
-		
 		nomClie=txtCliente.getText();
 		
 		imprimir("Cliente : "+nomClie);
-		imprimir("--------------------------------");
+		imprimir("-----------------------------------------");
 		
+		
+	}
+	void producto() {
+		int producto;
+		
+		
+		producto=cbo_producto.getSelectedIndex();
+		
+		switch(producto) {
+		
+		case 0:
+			imprimir_a();
+			break;
+		case 1:
+			imprimir_b();
+			break;
+		case 2:
+			imprimir_c();
+			break;
+		case 3:
+			imprimir_d();
+			break;
+		case 4:
+			imprimir_e();
+			break;	
+		case 5:
+			imprimir_f();
+			break;
+		case 6:
+			imprimir_g();
+			break;
+		}
+		
+	}
+	void cantidad() {
+		 int cantidad;
+		    cantidad=Integer.parseInt(txtCantidad.getText());
+		    
+		    cantidad=a.setCantidad(cantidad);
+		    cantidad=b.setCantidad(cantidad);
+		    cantidad=c.setCantidad(cantidad);
+		    cantidad=d.setCantidad(cantidad);
+		    cantidad=e.setCantidad(cantidad);
+		    cantidad=f.setCantidad(cantidad);
+		    cantidad=g.setCantidad(cantidad);
 		
 	}
 	void imprimir(String s) {
 		txtS.append(s+"\n");
 	}
+	protected void actionPerformedBtn_cancelar(ActionEvent e) {
+		txtS.setText("");
+	}
 }
+
