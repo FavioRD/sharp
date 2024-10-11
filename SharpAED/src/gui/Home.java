@@ -39,7 +39,7 @@ public class Home extends JDialog {
 	private JMenuItem mntmNewMenuItem_5;
 	private JMenuItem mntmNewMenuItem_6;
 	private JMenuItem mntmNewMenuItem_7;
-	private JMenuItem mntmNewMenuItem_8;
+	private JMenuItem menuModificarCliente;
 	private JMenuItem mntmNewMenuItem_9;
 
 	/**
@@ -132,8 +132,13 @@ public class Home extends JDialog {
 		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
 		mnNewMenu_6.add(mntmNewMenuItem_7);
 		
-		mntmNewMenuItem_8 = new JMenuItem("Modificar Cliente");
-		mnNewMenu_6.add(mntmNewMenuItem_8);
+		menuModificarCliente = new JMenuItem("Modificar Cliente");
+		menuModificarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMenuModificarCliente(e);
+			}
+		});
+		mnNewMenu_6.add(menuModificarCliente);
 		
 		mntmNewMenuItem_9 = new JMenuItem("Borrar Cliente");
 		mnNewMenu_6.add(mntmNewMenuItem_9);
@@ -151,9 +156,11 @@ public class Home extends JDialog {
 		menuBar.add(mnNewMenu_4);
 	}
 	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
-
 		CrearVenta.abrirVentana();
 		
 	}
 	
+	protected void actionPerformedMenuModificarCliente(ActionEvent e) {
+		ModificarCliente.abrirVentana();
+	}
 }

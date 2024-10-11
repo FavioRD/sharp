@@ -73,5 +73,8 @@ public class Cliente {
 		return dni;
 	}
 
+	public String toString() {
+		return nombres + " " + apellidos;
+	}
 
 }
