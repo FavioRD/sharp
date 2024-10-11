@@ -40,7 +40,7 @@ public class CrearVenta extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,6 +51,7 @@ public class CrearVenta extends JFrame implements ActionListener {
 				}
 			}
 		});
+		
 	}
 
 	/**
