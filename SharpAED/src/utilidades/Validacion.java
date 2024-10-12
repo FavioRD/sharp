@@ -41,9 +41,29 @@ public class Validacion {
 	public static boolean validarStock(int stock) {
 		return stock > 0;
 	}
+	
+	public static boolean validarTelefono(String telefono) {
+		if (telefono.length() == 9) {
+            return telefono.matches("[0-9]+");
+		}
+		return false;
+	}
+	
+	public static boolean validarDni(String dni) {
+		if (dni.length() == 8) {
+			return dni.matches("[0-9]+");
+		}
+		return false;
+	}
 
-	public static boolean validarNombre(String nombre) {
-		return nombre.length() > 0;
+	public static boolean validarString(String nombre) {
+		 // Verifica que no sea nulo ni vacío
+	    if (nombre == null || nombre.trim().isEmpty()) {
+	        return false;
+	    }
+
+	    // Verifica que contenga solo letras
+	    return nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+");
 	}
 
 	public static boolean validarCodigo(String codigo) {

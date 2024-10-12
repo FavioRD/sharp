@@ -6,17 +6,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import arreglos.ArregloClientes;
 import clases.Cliente;
 import clases.Producto;
+import guiComplementarias.VentanaDialogo;
+import utilidades.Validacion;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class ModificarCliente extends JFrame {
@@ -25,7 +32,7 @@ public class ModificarCliente extends JFrame {
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblNewLabel;
-	private JComboBox cboClientes;
+	private JComboBox<Cliente> cboClientes;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDireccion;
@@ -39,13 +46,9 @@ public class ModificarCliente extends JFrame {
 	private JButton btnModificarCliente;
 	private JButton btnCancelar;
 
-	Cliente cliente1 = new Cliente("Juan Perez", "12345678", "Av. Los Alamos 123", "12345678", "13131235");
-	Cliente cliente2 = new Cliente("Maria Lopez", "87654321", "Av. Los Pinos 456", "87654321", "13151234");
-	Cliente cliente3 = new Cliente("Carlos", "12345678", "Av. Los Alamos 123", "12345678", "888124991");
-	Cliente cliente4 = new Cliente("Pedro", "87654321", "Av. Los Pinos 456", "87654321", "949194191");
-
-	private Cliente[] codigoClientes = { cliente1, cliente2, cliente3, cliente4 };
-
+	ArregloClientes arregloClientes = new ArregloClientes();
+//	private static ArrayList<Cliente> clientes = ArregloClientes.getClientes();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +71,7 @@ public class ModificarCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarCliente() {
+		
 		setTitle("Modificar Cliente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 623, 416);
@@ -84,7 +88,10 @@ public class ModificarCliente extends JFrame {
 		panel.setLayout(null);
 
 		cboClientes = new JComboBox<Cliente>();
-		cboClientes.setModel(new DefaultComboBoxModel(codigoClientes));
+		for (int i = 0; i < ArregloClientes.getNroClientes(); i++) {
+			cboClientes.addItem(ArregloClientes.getCliente(i));
+		}
+		System.out.println(ArregloClientes.getClientes());
 		cboClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedcboClientes(e);
@@ -166,13 +173,29 @@ public class ModificarCliente extends JFrame {
 		txtDni.setText(clienteSeleccionado.getDni());
 	}
 	protected void actionPerformedBtnModificarCliente(ActionEvent e) {
-		Cliente clienteSeleccionado = (Cliente) cboClientes.getSelectedItem();
-		clienteSeleccionado.setNombres(txtNombre.getText());
-		clienteSeleccionado.setApellidos(txtApellido.getText());
-		clienteSeleccionado.setDireccion(txtDireccion.getText());
-		clienteSeleccionado.setTelefono(txtTelefono.getText());
-		clienteSeleccionado.setDni(txtDni.getText());
+		validarCampos();
+	}
+	
+	private void validarCampos() {
+		boolean nombreValido = Validacion.validarString(txtNombre.getText());
+		boolean apellidoValido = Validacion.validarString(txtApellido.getText());
+		boolean telefonoValido = Validacion.validarTelefono(txtTelefono.getText());
+		boolean dniValido = Validacion.validarDni(txtDni.getText());
 		
-//		dispose();
+		if (nombreValido && apellidoValido && telefonoValido && dniValido) {
+			modificarCliente();
+		} else {
+			JOptionPane.showMessageDialog(null, "Datos incorrectos");
+		}
+		
+	}
+	
+	private void modificarCliente() {
+		int i = cboClientes.getSelectedIndex();
+		Cliente cliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(), txtTelefono.getText(), txtDni.getText());
+		arregloClientes.modificarCliente(i, cliente);
+		
+		JOptionPane.showMessageDialog(null, "Cliente modificado");
+		this.dispose();
 	}
 }
