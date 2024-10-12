@@ -115,6 +115,11 @@ public class Home extends JDialog {
 		mnNewMenu_5.add(mntmNewMenuItem_2);
 		
 		mntmNewMenuItem_4 = new JMenuItem("Modificar Producto");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_4(e);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_4);
 		
 		mntmNewMenuItem_3 = new JMenuItem("Borrar Producto");
@@ -162,5 +167,8 @@ public class Home extends JDialog {
 	
 	protected void actionPerformedMenuModificarCliente(ActionEvent e) {
 		ModificarCliente.abrirVentana();
+	}
+	protected void actionPerformedMntmNewMenuItem_4(ActionEvent e) {
+		ModificarProducto.abrirVentana();
 	}
 }
