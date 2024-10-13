@@ -13,10 +13,10 @@ public class ArregloClientes {
 	
 
 	public ArregloClientes() {
-		Cliente cliente1 = new Cliente("Juan Perez", "12345678", "Av. Los Alamos 123", "12345678", "13131235");
-		Cliente cliente2 = new Cliente("Maria Lopez", "87654321", "Av. Los Pinos 456", "87654321", "13151234");
-		Cliente cliente3 = new Cliente("Carlos", "12345678", "Av. Los Alamos 123", "12345678", "888124991");
-		Cliente cliente4 = new Cliente("Pedro", "87654321", "Av. Los Pinos 456", "87654321", "949194191");
+		Cliente cliente1 = new Cliente("Juan ", "Perez", "Av. Los Alamos 123", "12345678", "13131235");
+		Cliente cliente2 = new Cliente("Maria ", "Carmos", "Av. Los Pinos 456", "87654321", "13151234");
+		Cliente cliente3 = new Cliente("Miguel ", "Duran", "Av. Los Alamos 123", "12345678", "888124991");
+		Cliente cliente4 = new Cliente("Lionel ", "Messi", "Av. Los Pinos 456", "87654321", "949194191");
 
 		if (clientes.isEmpty()) {
 			agregarCliente(cliente1);
