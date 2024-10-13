@@ -13,10 +13,10 @@ public class ArregloClientes {
 	
 
 	public ArregloClientes() {
-		Cliente cliente1 = new Cliente("Juan ", "Perez", "Av. Los Alamos 123", "12345678", "13131235");
-		Cliente cliente2 = new Cliente("Maria ", "Carmos", "Av. Los Pinos 456", "87654321", "13151234");
-		Cliente cliente3 = new Cliente("Miguel ", "Duran", "Av. Los Alamos 123", "12345678", "888124991");
-		Cliente cliente4 = new Cliente("Lionel ", "Messi", "Av. Los Pinos 456", "87654321", "949194191");
+		Cliente cliente1 = new Cliente("Juan", "Perez", "Av. Los Alamos 123", "123456788", "93932139");
+		Cliente cliente2 = new Cliente("Maria", "Carmos", "Av. Los Pinos 456", "987654321", "12312312");
+		Cliente cliente3 = new Cliente("Miguel", "Duran", "Av. Siempre Viva 31", "727245628", "32132132");
+		Cliente cliente4 = new Cliente("Lionel", "Messi", "Av. Los Marcianos 313", "934313127", "77777777");
 
 		if (clientes.isEmpty()) {
 			agregarCliente(cliente1);
@@ -38,7 +38,7 @@ public class ArregloClientes {
 		return clientes.get(i);
 	}
 	
-	public void modificarCliente(int i, Cliente cliente) {
+	public static void modificarCliente(int i, Cliente cliente) {
 		clientes.set(i, cliente);
 	}
 	
