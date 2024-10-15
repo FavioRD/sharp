@@ -5,38 +5,36 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import arreglos.ArregloClientes;
+import clases.Cliente;
+import utilidades.Validacion;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class ConsultarCliente extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JComboBox cboCodigo;
 	private JLabel lblNewLabel;
-	private JTextField txtNombre;
-	private JTextField txtApellido;
-	private JTextField txtDireccion;
-	private JTextField txtTelefono;
-	private JTextField txtDni;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JButton btnConsultarCliente;
-	private JButton btnCancelar;
+	private JButton btnConsultar;
+	private JTextField txtCodigo;
+	private JScrollPane scrollPane;
+	private JTable table;
 
 	
-	
+
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -61,74 +59,48 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		cboCodigo = new JComboBox();
-		cboCodigo.setBounds(115, 43, 137, 22);
-		contentPane.add(cboCodigo);
-		
+
 		lblNewLabel = new JLabel("Código Cliente");
-		lblNewLabel.setBounds(32, 47, 96, 14);
+		lblNewLabel.setBounds(41, 38, 96, 14);
 		contentPane.add(lblNewLabel);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(86, 90, 191, 20);
-		contentPane.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		txtApellido = new JTextField();
-		txtApellido.setBounds(86, 121, 191, 20);
-		contentPane.add(txtApellido);
-		txtApellido.setColumns(10);
-		
-		txtDireccion = new JTextField();
-		txtDireccion.setBounds(86, 152, 191, 20);
-		contentPane.add(txtDireccion);
-		txtDireccion.setColumns(10);
-		
-		txtTelefono = new JTextField();
-		txtTelefono.setBounds(86, 183, 191, 20);
-		contentPane.add(txtTelefono);
-		txtTelefono.setColumns(10);
-		
-		txtDni = new JTextField();
-		txtDni.setBounds(86, 214, 191, 20);
-		contentPane.add(txtDni);
-		txtDni.setColumns(10);
-		
-		lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(32, 93, 46, 14);
-		contentPane.add(lblNewLabel_1);
-		
-		lblNewLabel_2 = new JLabel("Apellido");
-		lblNewLabel_2.setBounds(32, 124, 46, 14);
-		contentPane.add(lblNewLabel_2);
-		
-		lblNewLabel_3 = new JLabel("Direccion");
-		lblNewLabel_3.setBounds(32, 155, 46, 14);
-		contentPane.add(lblNewLabel_3);
-		
-		lblNewLabel_4 = new JLabel("Teléfono");
-		lblNewLabel_4.setBounds(30, 186, 46, 14);
-		contentPane.add(lblNewLabel_4);
-		
-		lblNewLabel_5 = new JLabel("DNI");
-		lblNewLabel_5.setBounds(30, 217, 46, 14);
-		contentPane.add(lblNewLabel_5);
-		
-		btnConsultarCliente = new JButton("Consultar");
-		btnConsultarCliente.addActionListener(this);
-		btnConsultarCliente.setBounds(382, 43, 89, 23);
-		contentPane.add(btnConsultarCliente);
-		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(382, 77, 89, 23);
-		contentPane.add(btnCancelar);
+
+		btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(this);
+		btnConsultar.setBounds(435, 34, 89, 23);
+		contentPane.add(btnConsultar);
+
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(147, 35, 86, 20);
+		contentPane.add(txtCodigo);
+		txtCodigo.setColumns(10);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 86, 528, 181);
+		contentPane.add(scrollPane);
+
+		table = new JTable();
+		table.setFillsViewportHeight(true);
+		scrollPane.setViewportView(table);
 	}
+
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnConsultarCliente) {
-			actionPerformedBtnNewButton(e);
+		if (e.getSource() == btnConsultar) {
+			actionPerformedBtnConsultar(e);
 		}
 	}
-	protected void actionPerformedBtnNewButton(ActionEvent e) {
+	
+	arreglos.ArregloClientes arregloClientes = new ArregloClientes();
+
+	protected void actionPerformedBtnConsultar(ActionEvent e) {
+		int codigoCliente = Integer.parseInt(txtCodigo.getText());
+		Cliente x = arregloClientes.buscar(codigoCliente);
+		if (x != null) {
+			Object[][] datos = { { x.getCodigoCliente(), x.getNombres(), x.getApellidos(), x.getDireccion(),
+					x.getTelefono(), x.getDni() } };
+			String[] columnas = { "Código Cliente", "Nombres", "Apellidos", "Dirección", "Teléfono", "DNI" };
+			table.setModel(new javax.swing.table.DefaultTableModel(datos, columnas));
+		} else {
+			System.out.println("Cliente no encontrado");
+		}
 	}
 }
