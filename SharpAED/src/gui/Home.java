@@ -5,6 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import arreglos.ArregloClientes;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.GridLayout;
@@ -42,6 +45,8 @@ public class Home extends JDialog {
 	private JMenuItem menuModificarCliente;
 	private JMenuItem mntmNewMenuItem_9;
 
+	
+	ArregloClientes arregloClientes = new ArregloClientes();
 	/**
 	 * Launch the application.
 	 */
@@ -135,6 +140,11 @@ public class Home extends JDialog {
 		mnNewMenu_6.add(mntmNewMenuItem_6);
 		
 		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_7(e);
+			}
+		});
 		mnNewMenu_6.add(mntmNewMenuItem_7);
 		
 		menuModificarCliente = new JMenuItem("Modificar Cliente");
@@ -170,5 +180,8 @@ public class Home extends JDialog {
 	}
 	protected void actionPerformedMntmNewMenuItem_4(ActionEvent e) {
 		ModificarProducto.abrirVentana();
+	}
+	protected void actionPerformedMntmNewMenuItem_7(ActionEvent e) {
+		ListarClientes.abrirVentana();
 	}
 }

@@ -46,7 +46,7 @@ public class ModificarCliente extends JFrame {
 	private JButton btnModificarCliente;
 	private JButton btnCancelar;
 
-	ArregloClientes arregloClientes = new ArregloClientes();
+	
 //	private static ArrayList<Cliente> clientes = ArregloClientes.getClientes();
 	
 	/**
@@ -193,7 +193,8 @@ public class ModificarCliente extends JFrame {
 	private void modificarCliente() {
 		int i = cboClientes.getSelectedIndex();
 		Cliente cliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(), txtTelefono.getText(), txtDni.getText());
-		arregloClientes.modificarCliente(i, cliente);
+//		arregloClientes.modificarCliente(i, cliente);
+		ArregloClientes.modificarCliente(i, cliente);
 		
 		JOptionPane.showMessageDialog(null, "Cliente modificado");
 		this.dispose();
