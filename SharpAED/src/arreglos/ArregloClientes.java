@@ -46,6 +46,15 @@ public class ArregloClientes {
 		clientes.add(cliente);
 	}
 	
-	
+	public Cliente buscar(int codigoCliente) {
+		for (int i = 0; i < nroClientes; i++) {
+			Cliente x = clientes.get(i);
+				if (codigoCliente == x.getCodigoCliente()) {
+					return x;
+				}
+			}
+			return null;
+		}
+
 	
 }

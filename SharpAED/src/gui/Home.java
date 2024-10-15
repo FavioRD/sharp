@@ -42,15 +42,16 @@ public class Home extends JDialog {
 	private JMenuItem mntmNewMenuItem_5;
 	private JMenuItem mntmNewMenuItem_6;
 	private JMenuItem mntmNewMenuItem_7;
+	private JMenuItem menuConsultarCliente;
 	private JMenuItem menuModificarCliente;
 	private JMenuItem mntmNewMenuItem_9;
 
-	
 	ArregloClientes arregloClientes = new ArregloClientes();
+
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public static void abrirVentana() {
 		try {
 			Home dialog = new Home();
@@ -60,7 +61,6 @@ public class Home extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
 
 	/**
 	 * Create the dialog.
@@ -72,12 +72,12 @@ public class Home extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		panel = new JPanel();
 		panel.setBounds(109, 71, 588, 306);
 		contentPanel.add(panel);
 		panel.setLayout(new GridLayout(0, 3, 10, 10));
-		
+
 		btnRegistrarVenta = new JButton("Registrar Venta");
 		btnRegistrarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,40 +85,40 @@ public class Home extends JDialog {
 			}
 		});
 		panel.add(btnRegistrarVenta);
-		
+
 		btnAgregarCliente = new JButton("Agregar Cliente");
 		panel.add(btnAgregarCliente);
-		
+
 		btnListarProductos = new JButton("Listar Productos");
 		panel.add(btnListarProductos);
-		
+
 		btnAgregarProducto = new JButton("Agregar Producto");
 		panel.add(btnAgregarProducto);
-		
+
 		btnGenerarReporte = new JButton("Generar Reporte");
 		panel.add(btnGenerarReporte);
-		
+
 		btnConfig = new JButton("Configuración");
 		panel.add(btnConfig);
-		
+
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		mnNewMenu = new JMenu("Mantenimiento");
 		menuBar.add(mnNewMenu);
-		
+
 		mnNewMenu_5 = new JMenu("Productos");
 		mnNewMenu.add(mnNewMenu_5);
-		
+
 		mntmNewMenuItem = new JMenuItem("Agregar Producto");
 		mnNewMenu_5.add(mntmNewMenuItem);
-		
+
 		mntmNewMenuItem_1 = new JMenuItem("Listar Productos");
 		mnNewMenu_5.add(mntmNewMenuItem_1);
-		
+
 		mntmNewMenuItem_2 = new JMenuItem("Buscar  Producto");
 		mnNewMenu_5.add(mntmNewMenuItem_2);
-		
+
 		mntmNewMenuItem_4 = new JMenuItem("Modificar Producto");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,19 +126,24 @@ public class Home extends JDialog {
 			}
 		});
 		mnNewMenu_5.add(mntmNewMenuItem_4);
-		
+
 		mntmNewMenuItem_3 = new JMenuItem("Borrar Producto");
 		mnNewMenu_5.add(mntmNewMenuItem_3);
-		
+
 		mnNewMenu_6 = new JMenu("Clientes");
 		mnNewMenu.add(mnNewMenu_6);
-		
+
 		mntmNewMenuItem_5 = new JMenuItem("Agregar Cliente");
 		mnNewMenu_6.add(mntmNewMenuItem_5);
-		
-		mntmNewMenuItem_6 = new JMenuItem("Buscar Cliente");
-		mnNewMenu_6.add(mntmNewMenuItem_6);
-		
+
+		menuConsultarCliente = new JMenuItem("Consultar Cliente");
+		menuConsultarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedmenuConsultarCliente(e);
+			}
+		});
+		mnNewMenu_6.add(menuConsultarCliente);
+
 		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +151,7 @@ public class Home extends JDialog {
 			}
 		});
 		mnNewMenu_6.add(mntmNewMenuItem_7);
-		
+
 		menuModificarCliente = new JMenuItem("Modificar Cliente");
 		menuModificarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,34 +159,41 @@ public class Home extends JDialog {
 			}
 		});
 		mnNewMenu_6.add(menuModificarCliente);
-		
+
 		mntmNewMenuItem_9 = new JMenuItem("Borrar Cliente");
 		mnNewMenu_6.add(mntmNewMenuItem_9);
-		
+
 		mnNewMenu_1 = new JMenu("Ventas");
 		menuBar.add(mnNewMenu_1);
-		
+
 		mnNewMenu_2 = new JMenu("Almacen");
 		menuBar.add(mnNewMenu_2);
-		
+
 		mnNewMenu_3 = new JMenu("Reportes");
 		menuBar.add(mnNewMenu_3);
-		
+
 		mnNewMenu_4 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_4);
 	}
+
 	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
 		CrearVenta.abrirVentana();
-		
+
 	}
-	
+
 	protected void actionPerformedMenuModificarCliente(ActionEvent e) {
 		ModificarCliente.abrirVentana();
 	}
+
 	protected void actionPerformedMntmNewMenuItem_4(ActionEvent e) {
 		ModificarProducto.abrirVentana();
 	}
+
 	protected void actionPerformedMntmNewMenuItem_7(ActionEvent e) {
 		ListarClientes.abrirVentana();
+	}
+
+	protected void actionPerformedmenuConsultarCliente(ActionEvent e) {
+		ConsultarCliente.abrirVentana();
 	}
 }
