@@ -25,7 +25,7 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JButton btnConsultar;
-	private JTextField txtCodigo;
+	private JTextField txtCodigoCliente;
 	private JScrollPane scrollPane;
 	private JTable table;
 
@@ -70,10 +70,10 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 		btnConsultar.setBounds(435, 34, 89, 23);
 		contentPane.add(btnConsultar);
 
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(147, 35, 86, 20);
-		contentPane.add(txtCodigo);
-		txtCodigo.setColumns(10);
+		txtCodigoCliente = new JTextField();
+		txtCodigoCliente.setBounds(147, 35, 86, 20);
+		contentPane.add(txtCodigoCliente);
+		txtCodigoCliente.setColumns(10);
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 86, 528, 181);
@@ -93,7 +93,7 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 	arreglos.ArregloClientes arregloClientes = new ArregloClientes();
 
 	protected void actionPerformedBtnConsultar(ActionEvent e) {
-		int codigoCliente = Integer.parseInt(txtCodigo.getText());
+		int codigoCliente = Integer.parseInt(txtCodigoCliente.getText());
 		Cliente x = arregloClientes.buscar(codigoCliente);
 		if (x != null) {
 			Object[][] datos = { { x.getCodigoCliente(), x.getNombres(), x.getApellidos(), x.getDireccion(),
