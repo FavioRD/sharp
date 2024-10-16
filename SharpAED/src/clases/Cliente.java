@@ -2,7 +2,7 @@ package clases;
 
 public class Cliente {
 
-	private int codigoCliente;
+	private int codigoCliente = 1001;
 	private String nombres;
 	private String apellidos;
 	private String direccion;
@@ -14,12 +14,13 @@ public class Cliente {
 	// constructor
 	public Cliente(String nombres, String apellidos, String direccion, String telefono, String dni) {
 
-		this.codigoCliente = contador++;
+		this.codigoCliente = contador;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.dni = dni;
+		Cliente.contador++;
 	}
 
 	// set
