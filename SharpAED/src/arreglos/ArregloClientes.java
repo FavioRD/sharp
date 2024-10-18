@@ -46,6 +46,9 @@ public class ArregloClientes {
 		clientes.add(cliente);
 	}
 	
+	public static void eliminarCliente(int i) {
+		clientes.remove(i);
+	}
 	public Cliente buscar(int codigoCliente) {
 		for (int i = 0; i < nroClientes; i++) {
 			Cliente x = clientes.get(i);
