@@ -10,12 +10,13 @@ public class Producto {
 
 	
 	public Producto(String nombre, double precio, int stockActual, int stockMinimo, int stockMaximo) {
-		Producto.codigoProducto++;
+
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 		this.stockMaximo = stockMaximo;
+		Producto.codigoProducto++;
 	}
 
 
@@ -43,6 +44,9 @@ public class Producto {
 		return stockActual;
 	}
 
+	public int getCodigoProducto() {
+		return codigoProducto;
+	}
 
 	public void setStockActual(int stockActual) {
 		this.stockActual = stockActual;
