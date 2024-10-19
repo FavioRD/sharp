@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
+import arreglos.ArregloProductos;
 import guiClientes.AgregarCliente;
 import guiClientes.ConsultarCliente;
 import guiClientes.EliminarCliente;
@@ -54,7 +55,7 @@ public class Home extends JDialog {
 	private JMenuItem mntmNewMenuItem_9;
 
 	ArregloClientes arregloClientes = new ArregloClientes();
-
+	ArregloProductos arregloProductos = new ArregloProductos();
 	/**
 	 * Launch the application.
 	 */

@@ -28,7 +28,7 @@ public class ArregloProductos {
 		return nroProducto;
 	}
 
-	public static ArrayList<Producto> getProdcuto() {
+	public static ArrayList<Producto> getProductos() {
 		return productos;
 	}
 

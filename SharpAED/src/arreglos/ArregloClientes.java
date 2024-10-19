@@ -8,9 +8,6 @@ public class ArregloClientes {
 
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private static int nroClientes;
-	
-	
-	
 
 	public ArregloClientes() {
 		Cliente cliente1 = new Cliente("Juan", "Perez", "Av. Los Alamos 123", "123456788", "93932139");
@@ -26,38 +23,39 @@ public class ArregloClientes {
 		}
 		nroClientes = clientes.size();
 	}
-	
+
 	public static int getNroClientes() {
 		return nroClientes;
 	}
+
 	public static ArrayList<Cliente> getClientes() {
 		return clientes;
 	}
-	
+
 	public static Cliente getCliente(int i) {
 		return clientes.get(i);
 	}
-	
+
 	public static void modificarCliente(int i, Cliente cliente) {
 		clientes.set(i, cliente);
 	}
-	
+
 	public void agregarCliente(Cliente cliente) {
 		clientes.add(cliente);
 	}
-	
+
 	public static void eliminarCliente(int i) {
 		clientes.remove(i);
 	}
+
 	public Cliente buscar(int codigoCliente) {
 		for (int i = 0; i < nroClientes; i++) {
 			Cliente x = clientes.get(i);
-				if (codigoCliente == x.getCodigoCliente()) {
-					return x;
-				}
+			if (codigoCliente == x.getCodigoCliente()) {
+				return x;
 			}
-			return null;
 		}
+		return null;
+	}
 
-	
 }

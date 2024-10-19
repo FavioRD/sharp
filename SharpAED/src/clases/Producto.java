@@ -72,7 +72,11 @@ public class Producto {
 		this.stockMaximo = stockMaximo;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nombre;
+	}
 	
 	
 }
