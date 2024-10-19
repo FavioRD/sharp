@@ -7,6 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
+import guiClientes.AgregarCliente;
+import guiClientes.ConsultarCliente;
+import guiClientes.EliminarCliente;
+import guiClientes.ListarClientes;
+import guiClientes.ModificarCliente;
+import guiProducto.ConsultarProducto;
+import guiProducto.ModificarProducto;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;

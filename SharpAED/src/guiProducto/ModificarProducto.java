@@ -1,18 +1,13 @@
-package gui;
+package guiProducto;
 
-import java.awt.BorderLayout;
 import clases.Producto;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloProductos;
-import clases.Producto;
 import utilidades.Validacion;
 
 import javax.swing.JTextArea;
@@ -21,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class ModProducto extends JDialog {
+public class ModificarProducto extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
@@ -29,27 +24,29 @@ public class ModProducto extends JDialog {
 	private JTextField txtStockAct;
 	private JTextField txtStockMin;
 	private JTextField txtStockMax;
-	private JComboBox cboProducto;
+	private JComboBox<Producto> cboProducto;
 	private JButton btnRegistrar;
 	private JButton btnCancelar;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+
+	public static void abrirVentana() {
 		try {
-			ModProducto dialog = new ModProducto();
+			ModificarProducto dialog = new ModificarProducto();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModProducto() {
+	public ModificarProducto() {
 		setBounds(100, 100, 579, 359);
 		getContentPane().setLayout(null);
 
@@ -58,7 +55,7 @@ public class ModProducto extends JDialog {
 		txtS.setBounds(280, 0, 283, 320);
 		getContentPane().add(txtS);
 
-		JComboBox cboProducto = new JComboBox();
+		JComboBox<Producto> cboProducto = new JComboBox<Producto>();
 		cboProducto.setBounds(41, 30, 188, 22);
 		getContentPane().add(cboProducto);
 

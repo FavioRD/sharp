@@ -1,4 +1,4 @@
-package gui;
+package guiClientes;
 
 import java.awt.EventQueue;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package gui;
+package guiProducto;
 
 import java.awt.EventQueue;
 

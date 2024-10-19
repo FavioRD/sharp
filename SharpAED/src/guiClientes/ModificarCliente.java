@@ -1,4 +1,4 @@
-package gui;
+package guiClientes;
 
 import java.awt.EventQueue;
 
@@ -8,8 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
 import clases.Cliente;
-import clases.Producto;
-import guiComplementarias.VentanaDialogo;
 import utilidades.Validacion;
 
 import java.awt.Color;
@@ -20,10 +18,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class ModificarCliente extends JFrame {
