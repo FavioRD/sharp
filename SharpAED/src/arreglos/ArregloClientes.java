@@ -84,11 +84,11 @@ public class ArregloClientes {
 			BufferedReader br = new BufferedReader(new FileReader("clientes.txt"));
 			while ((linea = br.readLine()) != null) {
 				fila = linea.split(";");
-				String nombres = fila[0];
-				String apellidos = fila[1];
-				String direccion = fila[2];
-				String telefono = fila[3];
-				String dni = fila[4];
+				String nombres = fila[1];
+				String apellidos = fila[2];
+				String direccion = fila[3];
+				String telefono = fila[4];
+				String dni = fila[5];
 				Cliente cliente = new Cliente(nombres, apellidos, direccion, telefono, dni);
 				agregarCliente(cliente);
 

@@ -38,17 +38,30 @@ public class Validacion {
 		return precio > 0;
 	}
 
+	public static boolean validarInteger(String valor) {
+	    try {
+	        int num = Integer.parseInt(valor);
+	        if (num < 0) {
+	            System.out.println("Error: El número es negativo.");
+	            return false;
+	        }
+	        return true;
+	    } catch (NumberFormatException e) {
+	        System.out.println("Error: El valor ingresado no es un número entero válido.");
+	        return false;
+	    }
+	}
 	public static boolean validarStock(int stock) {
 		return stock > 0;
 	}
-	
+
 	public static boolean validarTelefono(String telefono) {
 		if (telefono.length() == 9) {
-            return telefono.matches("[0-9]+");
+			return telefono.matches("[0-9]+");
 		}
 		return false;
 	}
-	
+
 	public static boolean validarDni(String dni) {
 		if (dni.length() == 8) {
 			return dni.matches("[0-9]+");
@@ -57,13 +70,13 @@ public class Validacion {
 	}
 
 	public static boolean validarString(String nombre) {
-		 // Verifica que no sea nulo ni vacío
-	    if (nombre == null || nombre.trim().isEmpty()) {
-	        return false;
-	    }
+		// Verifica que no sea nulo ni vacío
+		if (nombre == null || nombre.trim().isEmpty()) {
+			return false;
+		}
 
-	    // Verifica que contenga solo letras
-	    return nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+");
+		// Verifica que contenga solo letras
+		return nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+");
 	}
 
 	public static boolean validarCodigo(String codigo) {
