@@ -14,6 +14,8 @@ import guiClientes.EliminarCliente;
 import guiClientes.ListarClientes;
 import guiClientes.ModificarCliente;
 import guiProducto.ConsultarProducto;
+import guiProducto.EliminarProducto;
+import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
 
 import javax.swing.JMenuBar;
@@ -56,6 +58,7 @@ public class Home extends JDialog {
 
 	ArregloClientes arregloClientes = new ArregloClientes();
 	ArregloProductos arregloProductos = new ArregloProductos();
+
 	/**
 	 * Launch the application.
 	 */
@@ -103,6 +106,11 @@ public class Home extends JDialog {
 		panel.add(btnAgregarCliente);
 
 		btnListarProductos = new JButton("Listar Productos");
+		btnListarProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnListarProductos(e);
+			}
+		});
 		panel.add(btnListarProductos);
 
 		btnAgregarProducto = new JButton("Agregar Producto");
@@ -146,6 +154,11 @@ public class Home extends JDialog {
 		mnNewMenu_5.add(mntmNewMenuItem_4);
 
 		mntmNewMenuItem_3 = new JMenuItem("Borrar Producto");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_3(e);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_3);
 
 		mnNewMenu_6 = new JMenu("Clientes");
@@ -219,13 +232,25 @@ public class Home extends JDialog {
 	protected void actionPerformedmenuConsultarCliente(ActionEvent e) {
 		ConsultarCliente.abrirVentana();
 	}
+
 	protected void actionPerformedBtnAgregarCliente(ActionEvent e) {
 		AgregarCliente.abrirVentana();
 	}
+
 	protected void actionPerformedMntmNewMenuItem_9(ActionEvent e) {
 		EliminarCliente.abrirVentana();
 	}
+
 	protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
 		ConsultarProducto.abrirVentana();
 	}
+
+	protected void actionPerformedMntmNewMenuItem_3(ActionEvent e) {
+		EliminarProducto.abrirVentana();
+	}
+
+	protected void actionPerformedBtnListarProductos(ActionEvent e) {
+		ListarProducto.abrirVentana();
+	}
+
 }

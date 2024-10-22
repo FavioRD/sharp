@@ -60,6 +60,11 @@ public class ArregloProductos {
 		}
 		return null;
 	}
+	
+	public static void eliminarProducto(int i) {
+		productos.remove(i);
+		nroProducto--;
+	}
 
 	public void guardarProductos() {
 		try {
