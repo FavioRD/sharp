@@ -68,10 +68,24 @@ public class Archivo {
 	public boolean modificarArchivo(String nuevoContenido) {
 		return escribirArchivo(nuevoContenido);
 	}
-	
+
 	public boolean archivoVacio() {
 		File archivo = new File(ruta);
 		return archivo.length() == 0;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+	
+	public void agregarLinea(String contenido) {
+		try {
+			PrintWriter escritor = new PrintWriter(new FileWriter(ruta, true));
+			escritor.println(contenido);
+			escritor.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -11,8 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
 import arreglos.ArregloProductos;
+import arreglos.ArregloVentas;
 import clases.Cliente;
 import clases.Producto;
+import clases.Venta;
 import utilidades.Validacion;
 
 import java.awt.GridLayout;
@@ -74,6 +76,8 @@ public class CrearVenta extends JDialog {
 	private JPanel panel_2;
 	private JLabel txtStockActual;
 	private JPanel panel_3;
+
+	ArregloVentas arregloVentas = new ArregloVentas();
 
 	/**
 	 * Launch the application.
@@ -307,7 +311,9 @@ public class CrearVenta extends JDialog {
 		}
 
 		if (validarStock()) {
-			actualizarStock();
+			arregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(), getProducto().getCodigoProducto(),
+					Integer.parseInt(txtCantidad.getText()), getProducto().getPrecio(), "20/02/2001"));
+//			actualizarStock();
 			listarTabla();
 			imprimir(cliente);
 		}
@@ -326,15 +332,14 @@ public class CrearVenta extends JDialog {
 		}
 		return true;
 	}
-	
+
 	protected void actualizarStock() {
 		Producto producto = (Producto) cboProductos.getSelectedItem();
 		int codigoProducto = producto.getCodigoProducto();
 		int stock = producto.getStockActual();
 		int cantidad = Integer.parseInt(txtCantidad.getText());
-		
-		
+
 //		TERMINAR DE IMPLEMENTAR LA ACTUALIZACION DE STOCK
-		ArregloProductos.actualizarStock(codigoProducto, cantidad);
+//		ArregloProductos.actualizarStock(codigoProducto, cantidad);
 	}
 }

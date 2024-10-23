@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
 import arreglos.ArregloProductos;
+import arreglos.ArregloVentas;
 import guiClientes.AgregarCliente;
 import guiClientes.ConsultarCliente;
 import guiClientes.EliminarCliente;
@@ -58,7 +59,7 @@ public class Home extends JDialog {
 
 	ArregloClientes arregloClientes = new ArregloClientes();
 	ArregloProductos arregloProductos = new ArregloProductos();
-
+	ArregloVentas arregloVentas = new ArregloVentas();
 	/**
 	 * Launch the application.
 	 */

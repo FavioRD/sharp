@@ -1,22 +1,24 @@
 package clases;
 
 public class Producto {
-	private static int codigoProducto = 2001; // Auto-Generado y correlativo a partir de 2001
+	private int codigoProducto = 2001; // Auto-Generado y correlativo a partir de 2001
 	private String nombre;
 	private double precio;
 	private int stockActual;
 	private int stockMinimo;
 	private int stockMaximo;
 
+	private static int contador = 2001;
 	
 	public Producto(String nombre, double precio, int stockActual, int stockMinimo, int stockMaximo) {
 
+		this.codigoProducto = contador;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 		this.stockMaximo = stockMaximo;
-		Producto.codigoProducto++;
+		Producto.contador++;
 	}
 
 
