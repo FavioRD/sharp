@@ -252,79 +252,49 @@ public class CrearVenta extends JDialog {
 	}
 
 	protected void actionPerformedCboProductos(ActionEvent e) {
-		mostrarDescripcion();
+		mostrarDescripcionProducto();
 	}
-	
 
 	protected void actionPerformedBtnCrearVenta(ActionEvent e) {
 		crearVenta();
 
 	}
 
-	protected void mostrarDescripcion() {
-		Producto producto = (Producto) cboProductos.getSelectedItem();
-		txtPrecio.setText("S/ " + producto.getPrecio());
-		txtStockActual.setText(String.valueOf(producto.getStockActual()));
-	}
-	
-	protected Cliente getCliente() {
+	protected Cliente obtenerClienteSeleccionado() {
 		return (Cliente) cboClientes.getSelectedItem();
 	}
 
-	protected Producto getProducto() {
+	protected Producto obtenerProductoSeleccionado() {
 		return (Producto) cboProductos.getSelectedItem();
 	}
 
-	protected void listarTabla() {
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-		if (table.getRowCount() > 0) {
-			model.setRowCount(0);
-		}
-
-		Producto prod = getProducto();
-		int cantidad = Integer.parseInt(txtCantidad.getText());
-		double precio = prod.getPrecio();
-		double subtotal = cantidad * precio;
-		double igv = Double.parseDouble(txtIGV.getText());
-		double igvTotal = subtotal * (igv / 100);
-		double total = subtotal + igvTotal;
-
-		model.addRow(new Object[] { prod.getCodigoProducto(), prod.getNombre(), cantidad, precio, subtotal, igvTotal,
-				total });
-
-	}
-
-	protected void imprimir(Cliente cliente) {
-		txtCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
-		txtCodigoCliente.setText(String.valueOf(cliente.getCodigoCliente()));
-		txtDni.setText(cliente.getDni());
-		txtDireccion.setText(cliente.getDireccion());
-
-	}
-
+//	Crear la venta y actualizar el stock del producto
 	protected void crearVenta() {
 		boolean cantidadValida = Validacion.validarInteger(txtCantidad.getText());
-		Cliente cliente = (Cliente) cboClientes.getSelectedItem();
-
+		boolean stockValido = validarStock();
+		Cliente cliente = obtenerClienteSeleccionado();
 		if (!cantidadValida) {
 			JOptionPane.showMessageDialog(null, "La cantidad ingresada no es válida.");
 			return;
 		}
 
-		if (validarStock()) {
-			ArregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(), getProducto().getCodigoProducto(),
-					Integer.parseInt(txtCantidad.getText()), getProducto().getPrecio(), "20/02/2001"));
+		if (stockValido) {
+			ArregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(),
+					obtenerProductoSeleccionado().getCodigoProducto(), Integer.parseInt(txtCantidad.getText()),
+					obtenerProductoSeleccionado().getPrecio(), "20/02/2001"));
 			actualizarStock();
-			mostrarDescripcion();
-			listarTabla();
-			imprimir(cliente);
+			mostrarDescripcionProducto();
+			listarTablaProductos();
+			imprimirDetallesCliente(cliente);
+			JOptionPane.showMessageDialog(null, "Venta creada correctamente.");
+			dispose();
 		}
 		;
 	}
 
 	protected boolean validarStock() {
-		Producto producto = (Producto) cboProductos.getSelectedItem();
+		Producto producto = obtenerProductoSeleccionado();
 		int stock = producto.getStockActual();
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 
@@ -337,14 +307,52 @@ public class CrearVenta extends JDialog {
 	}
 
 	protected void actualizarStock() {
-		Producto producto = (Producto) cboProductos.getSelectedItem();
+		Producto producto = obtenerProductoSeleccionado();
 		int pos = cboProductos.getSelectedIndex();
-		int codigoProducto = producto.getCodigoProducto();
 		int stock = producto.getStockActual();
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 
 		ArregloProductos.modificarProducto(pos, new Producto(producto.getNombre(), producto.getPrecio(),
-                stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo()));
+				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo()));
 		ArregloProductos.actualizarProductos();
 	}
+	
+	
+//	Mostrar la descripcion del producto en una tabla
+	protected void listarTablaProductos() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+		if (table.getRowCount() > 0) {
+			model.setRowCount(0);
+		}
+
+		Producto prod = obtenerProductoSeleccionado();
+		int cantidad = Integer.parseInt(txtCantidad.getText());
+		double precio = prod.getPrecio();
+		double subtotal = cantidad * precio;
+		double igv = Double.parseDouble(txtIGV.getText());
+		double igvTotal = subtotal * (igv / 100);
+		double total = subtotal + igvTotal;
+
+		model.addRow(new Object[] { prod.getCodigoProducto(), prod.getNombre(), cantidad, precio, subtotal, igvTotal,
+				total });
+
+	}
+
+//	Mostrar el precio y el stock actual del producto seleccionado en los campos de texto
+	protected void mostrarDescripcionProducto() {
+		Producto producto = obtenerProductoSeleccionado();
+		txtPrecio.setText("S/ " + producto.getPrecio());
+		txtStockActual.setText(String.valueOf(producto.getStockActual()));
+	}
+
+	
+	protected void imprimirDetallesCliente(Cliente cliente) {
+		txtCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
+		txtCodigoCliente.setText(String.valueOf(cliente.getCodigoCliente()));
+		txtDni.setText(cliente.getDni());
+		txtDireccion.setText(cliente.getDireccion());
+
+	}
+
 }
