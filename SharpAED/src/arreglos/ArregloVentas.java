@@ -11,7 +11,9 @@ import clases.Venta;
 
 public class ArregloVentas {
 
-	private  ArrayList<Venta> ventas = new ArrayList<>();
+	private static ArrayList<Venta> ventas = new ArrayList<>();
+
+	private static int ultimoCodigoVenta = 0;
 
 	static Archivo archivo = new Archivo("ventas.txt");
 
@@ -29,14 +31,12 @@ public class ArregloVentas {
 				agregarVenta(venta4);
 				guardarVentas();
 			}
-			
+
 			System.out.println("Ventas cargadas");
 			System.out.println("Cantidad de ventas: " + ventas.size());
 			System.out.println("Ventas: ");
 			System.out.println(ventas);
 		}
-		
-		
 
 		cargarVentas();
 
@@ -46,14 +46,14 @@ public class ArregloVentas {
 		return ventas;
 	}
 
-	public  void agregarVenta(Venta venta) {
+	public static void agregarVenta(Venta venta) {
 		ventas.add(venta);
 	}
 
-	public void escribirVenta(Venta venta) {
+	public static void escribirVenta(Venta venta) {
 		agregarVenta(venta);
-		archivo.agregarLinea(venta.getCodigoVenta() + ";" + venta.getCodigoCliente() + ";" + venta.getCodigoProducto() + ";"
-                + venta.getCantidad() + ";" + venta.getPrecio() + ";" + venta.getFecha());
+		archivo.agregarLinea(venta.getCodigoVenta() + ";" + venta.getCodigoCliente() + ";" + venta.getCodigoProducto()
+				+ ";" + venta.getCantidad() + ";" + venta.getPrecio() + ";" + venta.getFecha());
 	}
 
 	public void guardarVentas() {

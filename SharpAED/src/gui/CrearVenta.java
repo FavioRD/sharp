@@ -77,8 +77,6 @@ public class CrearVenta extends JDialog {
 	private JLabel txtStockActual;
 	private JPanel panel_3;
 
-	ArregloVentas arregloVentas = new ArregloVentas();
-
 	/**
 	 * Launch the application.
 	 */
@@ -254,17 +252,21 @@ public class CrearVenta extends JDialog {
 	}
 
 	protected void actionPerformedCboProductos(ActionEvent e) {
-		Producto producto = (Producto) cboProductos.getSelectedItem();
-
-		txtPrecio.setText("S/ " + producto.getPrecio());
-		txtStockActual.setText(String.valueOf(producto.getStockActual()));
+		mostrarDescripcion();
 	}
+	
 
 	protected void actionPerformedBtnCrearVenta(ActionEvent e) {
 		crearVenta();
 
 	}
 
+	protected void mostrarDescripcion() {
+		Producto producto = (Producto) cboProductos.getSelectedItem();
+		txtPrecio.setText("S/ " + producto.getPrecio());
+		txtStockActual.setText(String.valueOf(producto.getStockActual()));
+	}
+	
 	protected Cliente getCliente() {
 		return (Cliente) cboClientes.getSelectedItem();
 	}
@@ -311,9 +313,10 @@ public class CrearVenta extends JDialog {
 		}
 
 		if (validarStock()) {
-			arregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(), getProducto().getCodigoProducto(),
+			ArregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(), getProducto().getCodigoProducto(),
 					Integer.parseInt(txtCantidad.getText()), getProducto().getPrecio(), "20/02/2001"));
-//			actualizarStock();
+			actualizarStock();
+			mostrarDescripcion();
 			listarTabla();
 			imprimir(cliente);
 		}
@@ -335,11 +338,13 @@ public class CrearVenta extends JDialog {
 
 	protected void actualizarStock() {
 		Producto producto = (Producto) cboProductos.getSelectedItem();
+		int pos = cboProductos.getSelectedIndex();
 		int codigoProducto = producto.getCodigoProducto();
 		int stock = producto.getStockActual();
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 
-//		TERMINAR DE IMPLEMENTAR LA ACTUALIZACION DE STOCK
-//		ArregloProductos.actualizarStock(codigoProducto, cantidad);
+		ArregloProductos.modificarProducto(pos, new Producto(producto.getNombre(), producto.getPrecio(),
+                stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo()));
+		ArregloProductos.actualizarProductos();
 	}
 }

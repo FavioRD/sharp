@@ -77,11 +77,20 @@ public class Archivo {
 	public String getRuta() {
 		return ruta;
 	}
-	
+
 	public void agregarLinea(String contenido) {
 		try {
 			PrintWriter escritor = new PrintWriter(new FileWriter(ruta, true));
 			escritor.println(contenido);
+			escritor.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void limpiarContenido() {
+		try {
+			PrintWriter escritor = new PrintWriter(new FileWriter(ruta));
 			escritor.close();
 		} catch (IOException e) {
 			e.printStackTrace();

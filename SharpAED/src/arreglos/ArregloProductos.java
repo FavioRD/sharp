@@ -15,22 +15,24 @@ public class ArregloProductos {
 	private static ArrayList<Producto> productos = new ArrayList<Producto>();
 	private static int nroProducto;
 
-	Archivo archivo = new Archivo("productos.txt");
+	static Archivo archivo = new Archivo("productos.txt");
 
 //	Hacer que el constructor de la clase ArregloProductos cargue los productos del archivo productos.txt y si no existe o esta vacio, cree 4 productos y los guarde en el archivo.
 	public ArregloProductos() {
 
 		if (!archivo.archivoExiste() || archivo.archivoVacio()) {
-			Producto producto1 = new Producto("mouse", 15.00, 60, 25, 100);
-			Producto producto2 = new Producto("case", 240.5, 34, 17, 60);
-			Producto producto3 = new Producto("monitor", 340.70, 70, 46, 120);
-			Producto producto4 = new Producto("teclado", 120, 56, 19, 70);
 
 			if (productos.isEmpty()) {
+				Producto producto1 = new Producto("mouse", 15.00, 60, 25, 100);
+				Producto producto2 = new Producto("case", 240.5, 34, 17, 60);
+				Producto producto3 = new Producto("monitor", 340.70, 70, 46, 120);
+				Producto producto4 = new Producto("teclado", 120, 56, 19, 70);
+
 				agregarProducto(producto1);
 				agregarProducto(producto2);
 				agregarProducto(producto3);
 				agregarProducto(producto4);
+				archivo.crearArchivo();
 				guardarProductos();
 			}
 
@@ -72,27 +74,16 @@ public class ArregloProductos {
 		return null;
 	}
 
-//	Sobreescibir el archivo cambiando el stock actual de un producto
-	public static void actualizarStock(int codigoProducto, int cantidad) {
-		for (int i = 0; i < nroProducto; i++) {
-			Producto x = productos.get(i);
-			if (codigoProducto == x.getCodigoProducto()) {
-				x.setStockActual(x.getStockActual() - cantidad);
-				productos.set(i, x);
-			}
-		}
-	}
-
 	public static void eliminarProducto(int i) {
 		productos.remove(i);
 		nroProducto--;
 	}
 
 //	Insertar productos en el archivo de texto
-	public void guardarProductos() {
+	public static void guardarProductos() {
 		try {
 //			La clase archivo tiene la logica que permite crear un archivo si no existe y escribir en el
-			archivo.crearArchivo();
+
 			String linea = "";
 			for (int i = 0; i < productos.size(); i++) {
 				Producto x = productos.get(i);
@@ -104,6 +95,16 @@ public class ArregloProductos {
 
 		} catch (Exception e) {
 			System.out.println("Error al guardar productos");
+		}
+	}
+
+	public static void actualizarProductos() {
+		try {
+			archivo.limpiarContenido();
+			guardarProductos();
+
+		} catch (Exception e) {
+			System.out.println("Error al actualizar productos");
 		}
 	}
 

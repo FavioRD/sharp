@@ -3,7 +3,7 @@ package clases;
 import clases.Venta;
 
 public class Venta {
-	private int codigoVenta = 3001;
+	private int codigoVenta;
 	private int codigoCliente;
 	private int codigoProducto;
 	private int cantidad;
