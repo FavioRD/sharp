@@ -7,27 +7,34 @@ public class Venta {
 	private int codigoCliente;
 	private int codigoProducto;
 	private int cantidad;
-	private double precio;
+	private double subtotal;
+	private double igv;
+	private double total;
+
 	private String fecha;
 
 	private static int contador = 3001;
+
 	// constructor
-	public Venta(int codigoCliente, int codigoProducto, int cantidad, double precio, String fecha) {
+	public Venta(int codigoCliente, int codigoProducto, int cantidad, double subtotal, double igv, double total,
+			String fecha) {
 		this.codigoVenta = contador;
-		this.precio = precio;
+		this.total = total;
 		this.cantidad = cantidad;
 		this.codigoCliente = codigoCliente;
 		this.codigoProducto = codigoProducto;
 		this.fecha = fecha;
+		this.subtotal = subtotal;
+		this.igv = igv;
 		Venta.contador++;
 	}
 
 	public double getPrecio() {
-		return precio;
+		return total;
 	}
 
 	public void setPrecio(double precio) {
-		this.precio = precio;
+		this.total = precio;
 	}
 
 	public int getCantidad() {
@@ -65,8 +72,24 @@ public class Venta {
 	public String getFecha() {
 		return fecha;
 	}
-	
+
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public double getIgv() {
+		return igv;
+	}
+
+	public void setIgv(double igv) {
+		this.igv = igv;
 	}
 }

@@ -19,11 +19,10 @@ public class ArregloVentas {
 
 	public ArregloVentas() {
 		if (!archivo.archivoExiste() || archivo.archivoVacio()) {
-			Venta venta1 = new Venta(1001, 2001, 5, 150.00, "2021-08-01");
-			Venta venta2 = new Venta(1002, 2002, 3, 200.00, "2021-08-02");
-			Venta venta3 = new Venta(1003, 2003, 2, 300.00, "2021-08-03");
-			Venta venta4 = new Venta(1004, 2004, 1, 100.00, "2021-08-04");
-
+			Venta venta1 = new Venta(2001, 1001, 1, 131, 341, 100, "2021/07/01");
+			Venta venta2 = new Venta(2002, 1002, 2, 262, 682, 200, "2021/07/02");
+			Venta venta3 = new Venta(2003, 1003, 3, 393, 1023, 300, "2021/07/03");
+			Venta venta4 = new Venta(2004, 1004, 4, 524, 1364, 400, "2021/07/04");
 			if (ventas.isEmpty()) {
 				agregarVenta(venta1);
 				agregarVenta(venta2);
@@ -32,10 +31,6 @@ public class ArregloVentas {
 				guardarVentas();
 			}
 
-			System.out.println("Ventas cargadas");
-			System.out.println("Cantidad de ventas: " + ventas.size());
-			System.out.println("Ventas: ");
-			System.out.println(ventas);
 		}
 
 		cargarVentas();
@@ -53,7 +48,7 @@ public class ArregloVentas {
 	public static void escribirVenta(Venta venta) {
 		agregarVenta(venta);
 		archivo.agregarLinea(venta.getCodigoVenta() + ";" + venta.getCodigoCliente() + ";" + venta.getCodigoProducto()
-				+ ";" + venta.getCantidad() + ";" + venta.getPrecio() + ";" + venta.getFecha());
+				+ ";" + venta.getCantidad() + ";" + venta.getSubtotal()+ ";" + venta.getIgv() + ";" + venta.getPrecio() + ";" + venta.getFecha());
 	}
 
 	public void guardarVentas() {
@@ -62,7 +57,8 @@ public class ArregloVentas {
 			String linea = "";
 			for (Venta venta : ventas) {
 				linea = venta.getCodigoVenta() + ";" + venta.getCodigoCliente() + ";" + venta.getCodigoProducto() + ";"
-						+ venta.getCantidad() + ";" + venta.getPrecio() + ";" + venta.getFecha();
+						+ venta.getCantidad() + ";" + venta.getSubtotal() + ";" + venta.getIgv() + ";" + venta.getPrecio() + ";"
+						+ venta.getFecha();
 				archivo.escribirArchivo(linea);
 			}
 		} catch (Exception e) {
@@ -76,15 +72,20 @@ public class ArregloVentas {
 			String linea, fila[];
 			BufferedReader lector = new BufferedReader(new FileReader(archivo.getRuta()));
 			while ((linea = lector.readLine()) != null) {
-				fila = linea.split(";");
+				
+				fila = linea.split(";");				
 				int codigoVenta = Integer.parseInt(fila[0]);
 				int codigoCliente = Integer.parseInt(fila[1]);
 				int codigoProducto = Integer.parseInt(fila[2]);
 				int cantidad = Integer.parseInt(fila[3]);
-				double precio = Double.parseDouble(fila[4]);
-				String fecha = fila[5];
-				Venta venta = new Venta(codigoCliente, codigoProducto, cantidad, precio, fecha);
+				double subtotal = Double.parseDouble(fila[4]);
+				double igv = Double.parseDouble(fila[5]);
+				double total = Double.parseDouble(fila[6]);
+				String fecha = fila[7];
+				
+				Venta venta = new Venta(codigoCliente, codigoProducto, cantidad, subtotal, igv, total, fecha);
 				ventas.add(venta);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

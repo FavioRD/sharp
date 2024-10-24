@@ -268,7 +268,6 @@ public class CrearVenta extends JDialog {
 		return (Producto) cboProductos.getSelectedItem();
 	}
 
-
 //	Crear la venta y actualizar el stock del producto
 	protected void crearVenta() {
 		boolean cantidadValida = Validacion.validarInteger(txtCantidad.getText());
@@ -282,11 +281,13 @@ public class CrearVenta extends JDialog {
 		if (stockValido) {
 			ArregloVentas.escribirVenta(new Venta(cliente.getCodigoCliente(),
 					obtenerProductoSeleccionado().getCodigoProducto(), Integer.parseInt(txtCantidad.getText()),
-					obtenerProductoSeleccionado().getPrecio(), "20/02/2001"));
+					calcularSubtotal(), calcularIGV(), calcularTotal(), "20/02/2001"));
 			actualizarStock();
 			mostrarDescripcionProducto();
 			listarTablaProductos();
 			imprimirDetallesCliente(cliente);
+			System.out.println(calcularSubtotal() + " " + calcularIGV() + " " + calcularTotal());
+			
 			JOptionPane.showMessageDialog(null, "Venta creada correctamente.");
 			dispose();
 		}
@@ -316,8 +317,7 @@ public class CrearVenta extends JDialog {
 				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo()));
 		ArregloProductos.actualizarProductos();
 	}
-	
-	
+
 //	Mostrar la descripcion del producto en una tabla
 	protected void listarTablaProductos() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -329,9 +329,9 @@ public class CrearVenta extends JDialog {
 		Producto prod = obtenerProductoSeleccionado();
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 		double precio = prod.getPrecio();
-		double subtotal = cantidad * precio;
+		double subtotal = calcularSubtotal();
 		double igv = Double.parseDouble(txtIGV.getText());
-		double igvTotal = subtotal * (igv / 100);
+		double igvTotal = calcularIGV();
 		double total = subtotal + igvTotal;
 
 		model.addRow(new Object[] { prod.getCodigoProducto(), prod.getNombre(), cantidad, precio, subtotal, igvTotal,
@@ -346,13 +346,37 @@ public class CrearVenta extends JDialog {
 		txtStockActual.setText(String.valueOf(producto.getStockActual()));
 	}
 
-	
 	protected void imprimirDetallesCliente(Cliente cliente) {
 		txtCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
 		txtCodigoCliente.setText(String.valueOf(cliente.getCodigoCliente()));
 		txtDni.setText(cliente.getDni());
 		txtDireccion.setText(cliente.getDireccion());
 
+	}
+
+	protected double calcularSubtotal() {
+		Producto producto = obtenerProductoSeleccionado();
+		int cantidad = Integer.parseInt(txtCantidad.getText());
+		double precio = producto.getPrecio();
+		double subtotal = cantidad * precio;
+		String subtotalString = String.format("%.2f", subtotal);
+		return Double.parseDouble(subtotalString);
+	}
+
+	private double calcularIGV() {
+		double subtotal = calcularSubtotal();
+		double igv = Double.parseDouble(txtIGV.getText());
+		double igvTotal = subtotal * (igv / 100);
+		String igvString = String.format("%.2f", igvTotal);
+		return Double.parseDouble(igvString);
+	}
+
+	private double calcularTotal() {
+		double subtotal = calcularSubtotal();
+		double igv = calcularIGV();
+		double total = subtotal + igv;
+		String totalString = String.format("%.2f", total);
+		return Double.parseDouble(totalString);
 	}
 
 }
