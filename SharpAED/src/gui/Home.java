@@ -18,6 +18,7 @@ import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
+import guiReportes.ListadoVentas;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -61,6 +62,7 @@ public class Home extends JDialog {
 	ArregloProductos arregloProductos = new ArregloProductos();
 	ArregloVentas arregloVentas = new ArregloVentas();
 	private JMenuItem mntmNewMenuItem_8;
+	private JMenuItem mntmNewMenuItem_10;
 	/**
 	 * Launch the application.
 	 */
@@ -217,6 +219,14 @@ public class Home extends JDialog {
 
 		mnNewMenu_3 = new JMenu("Reportes");
 		menuBar.add(mnNewMenu_3);
+		
+		mntmNewMenuItem_10 = new JMenuItem("Listar Ventas");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_10(e);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_10);
 
 		mnNewMenu_4 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_4);
@@ -264,5 +274,8 @@ public class Home extends JDialog {
 	}
 	protected void actionPerformedMntmNewMenuItem_8(ActionEvent e) {
 		AgregarStock.abrirVentana();
+	}
+	protected void actionPerformedMntmNewMenuItem_10(ActionEvent e) {
+		ListadoVentas.abrirVentana();
 	}
 }
