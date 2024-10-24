@@ -16,12 +16,12 @@ public class Validacion {
 		if (validarUsuario(usuario) && validarContrasena(contrasena)) {
 			if (usuario.equals("admin") && contrasena.equals("admin")) {
 				System.out.println("Credenciales correctas");
-				Home.abrirVentana();
+				Home.abrirVentana(1);
 				login.dispose();
 				return true;
 			} else if (usuario.equals("user") && contrasena.equals("user")) {
 				System.out.println("Credenciales correctas");
-				Home.abrirVentana();
+				Home.abrirVentana(0);
 				login.dispose();
 				return true;
 			} else {
