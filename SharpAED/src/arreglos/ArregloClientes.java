@@ -47,6 +47,11 @@ public class ArregloClientes {
 		clientes.set(i, cliente);
 	}
 
+	public int tamano() {
+		return clientes.size();
+	}
+	
+
 	public void agregarCliente(Cliente cliente) {
 		clientes.add(cliente);
 	}

@@ -52,6 +52,9 @@ public class ArregloProductos {
 		return productos;
 	}
 
+	public int tamano() {
+		return productos.size();
+	}
 	public static Producto getProducto(int i) {
 		return productos.get(i);
 	}
