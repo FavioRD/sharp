@@ -32,6 +32,7 @@ public class ListarProducto extends JFrame implements ActionListener {
 	public static void abrirVentana() {
 		try {
 			ListarProducto frame = new ListarProducto();
+			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -38,6 +38,7 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					Login frame = new Login();
+					frame.setLocationRelativeTo(null);	
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,6 +52,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setResizable(false);
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 731, 483);
 		contentPane = new JPanel();

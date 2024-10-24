@@ -31,6 +31,7 @@ public class EliminarCliente extends JFrame {
 		try {
 			EliminarCliente dialog = new EliminarCliente();
 			dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

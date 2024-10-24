@@ -41,9 +41,8 @@ public class ModificarCliente extends JFrame {
 	private JButton btnModificarCliente;
 	private JButton btnCancelar;
 
-	
 //	private static ArrayList<Cliente> clientes = ArregloClientes.getClientes();
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +52,7 @@ public class ModificarCliente extends JFrame {
 			public void run() {
 				try {
 					ModificarCliente frame = new ModificarCliente();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,7 +66,7 @@ public class ModificarCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarCliente() {
-		
+
 		setTitle("Modificar Cliente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 623, 416);
@@ -167,29 +167,31 @@ public class ModificarCliente extends JFrame {
 		txtTelefono.setText(clienteSeleccionado.getTelefono());
 		txtDni.setText(clienteSeleccionado.getDni());
 	}
+
 	protected void actionPerformedBtnModificarCliente(ActionEvent e) {
 		validarCampos();
 	}
-	
+
 	private void validarCampos() {
 		boolean nombreValido = Validacion.validarString(txtNombre.getText());
 		boolean apellidoValido = Validacion.validarString(txtApellido.getText());
 		boolean telefonoValido = Validacion.validarTelefono(txtTelefono.getText());
 		boolean dniValido = Validacion.validarDni(txtDni.getText());
-		
+
 		if (nombreValido && apellidoValido && telefonoValido && dniValido) {
 			modificarCliente();
 		} else {
 			JOptionPane.showMessageDialog(null, "Datos incorrectos");
 		}
-		
+
 	}
-	
+
 	private void modificarCliente() {
 		int i = cboClientes.getSelectedIndex();
-		Cliente cliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(), txtTelefono.getText(), txtDni.getText());
+		Cliente cliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(),
+				txtTelefono.getText(), txtDni.getText());
 		ArregloClientes.modificarCliente(i, cliente);
-		
+
 		JOptionPane.showMessageDialog(null, "Cliente modificado");
 		this.dispose();
 	}

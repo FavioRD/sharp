@@ -71,6 +71,7 @@ public class Home extends JDialog {
 		try {
 			Home dialog = new Home();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,6 +82,7 @@ public class Home extends JDialog {
 	 * Create the dialog.
 	 */
 	public Home() {
+		setResizable(false);
 		setTitle("SharpManager");
 		setBounds(100, 100, 823, 509);
 		getContentPane().setLayout(new BorderLayout());
@@ -121,6 +123,11 @@ public class Home extends JDialog {
 		panel.add(btnAgregarProducto);
 
 		btnGenerarReporte = new JButton("Generar Reporte");
+		btnGenerarReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnGenerarReporte(e);
+			}
+		});
 		panel.add(btnGenerarReporte);
 
 		btnConfig = new JButton("Configuración");
@@ -277,5 +284,8 @@ public class Home extends JDialog {
 	}
 	protected void actionPerformedMntmNewMenuItem_10(ActionEvent e) {
 		ListadoVentas.abrirVentana();
+	}
+	protected void actionPerformedBtnGenerarReporte(ActionEvent e) {
+		SeleccionarReporte.abrirVentana();
 	}
 }

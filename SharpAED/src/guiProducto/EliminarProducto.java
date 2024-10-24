@@ -30,6 +30,7 @@ public class EliminarProducto extends JFrame implements ActionListener {
 	public static void abrirVentana() {
 		try {
 			EliminarProducto frame = new EliminarProducto();
+			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

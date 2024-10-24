@@ -42,6 +42,7 @@ public class AgregarStock extends JDialog {
 			public void run() {
 				try {
 					AgregarStock dialog = new AgregarStock();
+					dialog.setLocationRelativeTo(null);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
