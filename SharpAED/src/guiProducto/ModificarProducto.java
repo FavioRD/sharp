@@ -169,7 +169,7 @@ public class ModificarProducto extends JDialog {
 		int i = cboProducto.getSelectedIndex();
 		Producto producto = new Producto(txtNombre.getText(), Double.parseDouble(txtPrecio.getText()),
 				Integer.parseInt(txtStockAct.getText()), Integer.parseInt(txtStockMin.getText()),
-				Integer.parseInt(txtStockMax.getText()));
+				Integer.parseInt(txtStockMax.getText()), ArregloProductos.getProducto(i).getTotalAcumulado());
 
 		ArregloProductos.modificarProducto(i, producto);
 

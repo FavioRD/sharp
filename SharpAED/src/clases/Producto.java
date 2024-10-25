@@ -8,9 +8,10 @@ public class Producto {
 	private int stockMinimo;
 	private int stockMaximo;
 
+	private double totalAcumulado;
 	private static int contador = 2001;
 	
-	public Producto(String nombre, double precio, int stockActual, int stockMinimo, int stockMaximo) {
+	public Producto(String nombre, double precio, int stockActual, int stockMinimo, int stockMaximo, double totalAcumulado) {
 
 		this.codigoProducto = contador;
 		this.nombre = nombre;
@@ -18,7 +19,9 @@ public class Producto {
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 		this.stockMaximo = stockMaximo;
+		this.totalAcumulado = totalAcumulado;
 		Producto.contador++;
+
 	}
 
 
@@ -72,6 +75,15 @@ public class Producto {
 
 	public void setStockMaximo(int stockMaximo) {
 		this.stockMaximo = stockMaximo;
+	}
+	
+	
+	public double getTotalAcumulado() {
+		return totalAcumulado;
+	}
+	
+	public void setTotalAcumulado(double totalAcomulado) {
+		this.totalAcumulado = totalAcomulado;
 	}
 	
 	@Override

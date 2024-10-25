@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import guiReportes.ListadoVentas;
+import guiReportes.TotalAcumulado;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -72,9 +73,17 @@ public class SeleccionarReporte extends JDialog {
 		panel.add(btnNewButton_1);
 		
 		btnNewButton_3 = new JButton("Listado de productos por total acumulado");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnNewButton_3(e);
+			}
+		});
 		panel.add(btnNewButton_3);
 	}
 	protected void actionPerformedBtnListarVentas(ActionEvent e) {
 		ListadoVentas.abrirVentana();
+	}
+	protected void actionPerformedBtnNewButton_3(ActionEvent e) {
+		TotalAcumulado.abrirVentana();
 	}
 }

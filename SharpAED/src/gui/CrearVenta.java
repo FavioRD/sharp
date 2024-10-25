@@ -277,6 +277,7 @@ public class CrearVenta extends JDialog {
 
 //	Crear la venta y actualizar el stock del producto
 	protected void crearVenta() {
+		Producto producto = obtenerProductoSeleccionado();
 		boolean cantidadValida = Validacion.validarInteger(txtCantidad.getText());
 		boolean stockValido = validarStock();
 		Cliente cliente = obtenerClienteSeleccionado();
@@ -295,6 +296,13 @@ public class CrearVenta extends JDialog {
 
 			listarTablaProductos();
 			imprimirDetallesCliente(cliente);
+
+//			producto.setTotalAcumulado(producto.getTotalAcumulado() + calcularTotal());
+			ArregloProductos.modificarProducto(cboProductos.getSelectedIndex(),
+					new Producto(producto.getNombre(), producto.getPrecio(), producto.getStockActual(),
+							producto.getStockMinimo(), producto.getStockMaximo(),
+							producto.getTotalAcumulado() + calcularTotal()));
+			ArregloProductos.actualizarProductos();
 			System.out.println(calcularSubtotal() + " " + calcularIGV() + " " + calcularTotal());
 
 			JOptionPane.showMessageDialog(null, "Venta creada correctamente.");
@@ -322,7 +330,7 @@ public class CrearVenta extends JDialog {
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 
 		ArregloProductos.modificarProducto(pos, new Producto(producto.getNombre(), producto.getPrecio(),
-				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo()));
+				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo(), producto.getTotalAcumulado()));
 		ArregloProductos.actualizarProductos();
 	}
 
@@ -380,11 +388,14 @@ public class CrearVenta extends JDialog {
 	}
 
 	private double calcularTotal() {
+		Producto producto = obtenerProductoSeleccionado();
 		double subtotal = calcularSubtotal();
 		double igv = calcularIGV();
 		double total = subtotal + igv;
 		String totalString = String.format("%.2f", total);
+
 		return Double.parseDouble(totalString);
+
 	}
 
 	protected void actionPerformedBtnCerrar(ActionEvent e) {

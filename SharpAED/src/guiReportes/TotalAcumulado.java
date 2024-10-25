@@ -10,13 +10,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import arreglos.ArregloProductos;
+import clases.Producto;
 public class TotalAcumulado extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JLabel lblNewLabel;
+	private JScrollPane scrollPane;
 	private JButton btnProcesar;
+	private JTable table;
+	private DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -36,15 +42,28 @@ public class TotalAcumulado extends JDialog {
 	 * Create the dialog.
 	 */
 	public TotalAcumulado() {
-		setBounds(100, 100, 450, 300);
+		setTitle("Reporte total acumulado");
+		setBounds(100, 100, 596, 410);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(178, 76, 46, 14);
-		contentPanel.add(lblNewLabel);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 82, 560, 278);
+		contentPanel.add(scrollPane);
+		
+		table = new JTable();
+		
+		table.setFillsViewportHeight(true);
+		scrollPane.setViewportView(table);
+		
+		
+		model = new DefaultTableModel();
+		model.addColumn("Codigo Producto");
+		model.addColumn("Nombre Producto");
+		model.addColumn("Total Acumulado");
+		table.setModel(model);
 		
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addActionListener(new ActionListener() {
@@ -52,9 +71,16 @@ public class TotalAcumulado extends JDialog {
 				actionPerformedBtnProcesar(e);
 			}
 		});
-		btnProcesar.setBounds(160, 122, 89, 23);
+		btnProcesar.setBounds(245, 27, 89, 23);
 		contentPanel.add(btnProcesar);
 	}
+	
+	
 	protected void actionPerformedBtnProcesar(ActionEvent e) {
+		model.setRowCount(0);
+        for (Producto p : ArregloProductos.getProductos()) {
+            model.addRow(new Object[] {p.getCodigoProducto(), p.getNombre(), p.getTotalAcumulado()});
+        }
+        
 	}
 }
