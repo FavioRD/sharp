@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import guiReportes.ListadoVentas;
 import guiReportes.TotalAcumulado;
+import guiReportes.ProductosStockMin;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -67,6 +68,11 @@ public class SeleccionarReporte extends JDialog {
 		panel.add(btnListarVentas);
 		
 		btnNewButton_2 = new JButton("Listar productos con stock minimo");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProductosStockMin.abrirVentana();
+			}
+		});
 		panel.add(btnNewButton_2);
 		
 		btnNewButton_1 = new JButton("Cantidad de unidades vendidas acumuladas");
@@ -85,5 +91,9 @@ public class SeleccionarReporte extends JDialog {
 	}
 	protected void actionPerformedBtnNewButton_3(ActionEvent e) {
 		TotalAcumulado.abrirVentana();
+	}
+
+	protected void actionPerformedBtnNewButton_2(ActionEvent e) {
+		ProductosStockMin.abrirVentana();
 	}
 }
