@@ -142,6 +142,7 @@ public class EliminarCliente extends JFrame {
 	private void eliminarCliente() {
 		int i = cboCliente.getSelectedIndex();
 		ArregloClientes.eliminarCliente(i);
+		ArregloClientes.actualizarClientes();
 		JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente");
 		dispose();
 	}
