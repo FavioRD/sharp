@@ -1,5 +1,7 @@
 package utilidades;
 
+import javax.swing.JOptionPane;
+
 import gui.Home;
 import gui.Login;
 
@@ -15,21 +17,19 @@ public class Validacion {
 	public static boolean validarCredenciales(String usuario, String contrasena, Login login) {
 		if (validarUsuario(usuario) && validarContrasena(contrasena)) {
 			if (usuario.equals("admin") && contrasena.equals("admin")) {
-				System.out.println("Credenciales correctas");
 				Home.abrirVentana(1);
 				login.dispose();
 				return true;
 			} else if (usuario.equals("user") && contrasena.equals("user")) {
-				System.out.println("Credenciales correctas");
 				Home.abrirVentana(0);
 				login.dispose();
 				return true;
 			} else {
-				System.out.println("Credenciales incorrectas");
+				JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 		} else {
-			System.out.println("Credenciales incorrectas");
+			JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}

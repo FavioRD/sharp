@@ -76,7 +76,7 @@ public class ArregloClientes {
 		return null;
 	}
 
-	public void guardarClientes() {
+	public static void guardarClientes() {
 		try {
 			String linea = "";
 
@@ -91,6 +91,15 @@ public class ArregloClientes {
 		}
 	}
 
+	public static void actualizarClientes() {
+		try {
+			archivo.limpiarContenido();
+			guardarClientes();
+		} catch (Exception e) {
+			System.out.println("Error al actualizar productos");
+		}
+	}
+	
 	public void cargarClientes() {
 		try {
 			String linea, fila[];

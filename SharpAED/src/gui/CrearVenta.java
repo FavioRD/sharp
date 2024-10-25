@@ -30,6 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDateTime;
 import java.beans.PropertyChangeEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
@@ -76,7 +77,9 @@ public class CrearVenta extends JDialog {
 	private JPanel panel_2;
 	private JLabel txtStockActual;
 	private JPanel panel_3;
-
+	
+	private LocalDateTime fecha = LocalDateTime.now();
+	private String fechaString = fecha.getDayOfMonth() + "/" + fecha.getMonthValue() + "/" + fecha.getYear();
 	/**
 	 * Launch the application.
 	 */
@@ -250,10 +253,10 @@ public class CrearVenta extends JDialog {
 		panel_2.add(txtDireccion);
 
 		lblNewLabel_15 = new JLabel("Fecha: ");
-		lblNewLabel_15.setBounds(337, 36, 69, 14);
+		lblNewLabel_15.setBounds(337, 36, 89, 14);
 		panel_2.add(lblNewLabel_15);
 
-		txtFecha = new JLabel("");
+		txtFecha = new JLabel(fechaString);
 		txtFecha.setBounds(390, 36, 107, 14);
 		panel_2.add(txtFecha);
 	}

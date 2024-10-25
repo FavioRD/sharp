@@ -70,6 +70,7 @@ public class Home extends JDialog {
 	private JMenuItem itemAgregarStock;
 	private JMenuItem itemListarVentas;
 	private JPanel panel_1;
+	private JMenuItem itemCrearVenta;
 
 	/**
 	 * Launch the application.
@@ -184,7 +185,7 @@ public class Home extends JDialog {
 		btnConfig.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnConfig.setIcon(new ImageIcon(Home.class.getResource("/imagenes/icons8-configurador-64.png")));
 		panel.add(btnConfig);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(0, 0, 817, 448);
@@ -200,9 +201,19 @@ public class Home extends JDialog {
 		mnNewMenu.add(mnNewMenu_5);
 
 		itemAgregarProducto = new JMenuItem("Agregar Producto");
+		itemAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedItemAgregarProducto(e);
+			}
+		});
 		mnNewMenu_5.add(itemAgregarProducto);
 
 		itemListarProductos = new JMenuItem("Listar Productos");
+		itemListarProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedItemListarProductos(e);
+			}
+		});
 		mnNewMenu_5.add(itemListarProductos);
 
 		itemBuscarProductos = new JMenuItem("Buscar Producto");
@@ -233,6 +244,11 @@ public class Home extends JDialog {
 		mnNewMenu.add(mnNewMenu_6);
 
 		itemAgregarCliente = new JMenuItem("Agregar Cliente");
+		itemAgregarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedItemAgregarCliente(e);
+			}
+		});
 		mnNewMenu_6.add(itemAgregarCliente);
 
 		itemConsultarCliente = new JMenuItem("Consultar Cliente");
@@ -269,6 +285,14 @@ public class Home extends JDialog {
 
 		mnNewMenu_1 = new JMenu("Ventas");
 		menuBar.add(mnNewMenu_1);
+		
+		itemCrearVenta = new JMenuItem("Registrar Venta");
+		itemCrearVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedItemCrearVenta(e);
+			}
+		});
+		mnNewMenu_1.add(itemCrearVenta);
 
 		mnNewMenu_2 = new JMenu("Almacen");
 		menuBar.add(mnNewMenu_2);
@@ -348,7 +372,23 @@ public class Home extends JDialog {
 	protected void actionPerformedBtnGenerarReporte(ActionEvent e) {
 		SeleccionarReporte.abrirVentana();
 	}
+
 	protected void actionPerformedBtnAgregarProducto(ActionEvent e) {
 		AgregarProducto.abrirVentana();
+	}
+
+	protected void actionPerformedItemAgregarProducto(ActionEvent e) {
+		AgregarProducto.abrirVentana();
+	}
+
+	protected void actionPerformedItemListarProductos(ActionEvent e) {
+		ListarProducto.abrirVentana();
+
+	}
+	protected void actionPerformedItemAgregarCliente(ActionEvent e) {
+		AgregarCliente.abrirVentana();
+	}
+	protected void actionPerformedItemCrearVenta(ActionEvent e) {
+		CrearVenta.abrirVentana();
 	}
 }

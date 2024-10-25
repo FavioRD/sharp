@@ -161,7 +161,7 @@ public class AgregarProducto extends JFrame implements ActionListener {
 	
 	    if (nombre.isEmpty() || precioTexto.isEmpty() || stockActualTexto.isEmpty() || 
 	        stockMinimoTexto.isEmpty() || stockMaximoTexto.isEmpty()) {	
-	    	JOptionPane.showMessageDialog(this, "Agrega datos,no seas imb*cil","burro",JOptionPane.WARNING_MESSAGE);
+	    	JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos", "Falta completar los campos",JOptionPane.WARNING_MESSAGE);
 	        return; 
 	    }
 	    try {
