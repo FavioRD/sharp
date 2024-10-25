@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import arreglos.ArregloClientes;
+import clases.Cliente;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -138,5 +142,7 @@ public class AgregarCliente extends JDialog {
 		panel.add(btnCancelar);
 	}
 	protected void actionPerformedBtnAgregar(ActionEvent e) {
+		ArregloClientes.agregarCliente(new Cliente(txtNombre.getText(), txtApellido.getText(), txtDni.getText(), txtDireccion.getText(), txtTelefono.getText()));
+		ArregloClientes.actualizarClientes();
 	}
 }

@@ -58,7 +58,7 @@ public class ArregloClientes {
 	}
 	
 
-	public void agregarCliente(Cliente cliente) {
+	public static void agregarCliente(Cliente cliente) {
 		clientes.add(cliente);
 	}
 

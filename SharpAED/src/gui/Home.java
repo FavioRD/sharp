@@ -19,7 +19,10 @@ import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
+import guiReportes.CantidadAcumulada;
 import guiReportes.ListadoVentas;
+import guiReportes.ProductosStockMin;
+import guiReportes.TotalAcumulado;
 import utilidades.Colores;
 
 import javax.swing.JMenuBar;
@@ -71,6 +74,10 @@ public class Home extends JDialog {
 	private JMenuItem itemListarVentas;
 	private JPanel panel_1;
 	private JMenuItem itemCrearVenta;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_2;
+	private JMenuItem mntmNewMenuItem_3;
 
 	/**
 	 * Launch the application.
@@ -219,7 +226,7 @@ public class Home extends JDialog {
 		itemBuscarProductos = new JMenuItem("Buscar Producto");
 		itemBuscarProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				actionPerformedMntmNewMenuItem_2(e);
+				actionPerformedItemBuscarProducto(e);
 			}
 		});
 		mnNewMenu_5.add(itemBuscarProductos);
@@ -314,10 +321,37 @@ public class Home extends JDialog {
 				actionPerformedMntmNewMenuItem_10(e);
 			}
 		});
+		
+		mntmNewMenuItem_1 = new JMenuItem("Importe total acumulado producto");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_1(e);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_1);
+		
+		mntmNewMenuItem_2 = new JMenuItem("Cantidad vendida acumulada");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_2(e);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_2);
+		
+		mntmNewMenuItem = new JMenuItem("Productos con stock minimo");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem(e);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem);
 		mnNewMenu_3.add(itemListarVentas);
 
 		mnNewMenu_4 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_4);
+		
+		mntmNewMenuItem_3 = new JMenuItem("Salir");
+		mnNewMenu_4.add(mntmNewMenuItem_3);
 	}
 
 	protected void actionPerformedBtnRegistrarVenta(ActionEvent e) {
@@ -350,7 +384,7 @@ public class Home extends JDialog {
 	}
 
 	protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
-		ConsultarProducto.abrirVentana();
+		CantidadAcumulada.abrirVentana();
 	}
 
 	protected void actionPerformedMntmNewMenuItem_3(ActionEvent e) {
@@ -391,4 +425,14 @@ public class Home extends JDialog {
 	protected void actionPerformedItemCrearVenta(ActionEvent e) {
 		CrearVenta.abrirVentana();
 	}
+	protected void actionPerformedMntmNewMenuItem_1(ActionEvent e) {
+		TotalAcumulado.abrirVentana();
+	}
+	protected void actionPerformedMntmNewMenuItem(ActionEvent e) {
+		ProductosStockMin.abrirVentana();
+	}
+
+	protected void actionPerformedItemBuscarProducto(ActionEvent e) {
+        ConsultarProducto.abrirVentana();
+    }
 }
