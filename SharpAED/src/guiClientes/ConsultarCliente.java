@@ -91,27 +91,67 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 		
 		btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(this);
-		btnConsultar.setBounds(539, 37, 89, 23);
+		btnConsultar.setBounds(543, 11, 89, 23);
 		contentPane.add(btnConsultar);
+		
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this);
+		btnCerrar.setBounds(543, 45, 89, 23);
+		contentPane.add(btnCerrar);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCerrar) {
+			actionPerformedBtnCerrar(e);
+		}
 		if (e.getSource() == btnConsultar) {
 			actionPerformedBtnConsultar(e);
 		}
 	}
 	
 	arreglos.ArregloClientes ArregloClientes = new ArregloClientes();
+	private JButton btnCerrar;
+	
 	
 	protected void actionPerformedBtnConsultar(ActionEvent e) {
-		Cliente	x=ArregloClientes.buscar(tblCliente.getSelectedRow());
-		mensaje("Codigo     : " + x.getCodigoCliente() + "\n" +
-		        "Nombre     : " + x.getNombres() + "\n" +
-				"Apellido   : " + x.getApellidos() + "\n" +
-				"Direccion  : " + x.getDireccion() + "\n" +
-				"Telefono   : " + x.getTelefono()+ "\n" + 
-				"DNI        : " + x.getDni());
+		
+		String codigoIngresadoStr = txtCodigo.getText().trim(); 
+	    int codigoIngresado = -1;
+	    
+	    try {
+	        codigoIngresado = Integer.parseInt(codigoIngresadoStr); 
+	    } catch (NumberFormatException ex) {
+	        mensaje("Porfavor ingrese un codigo valido");
+	        txtCodigo.setText("");
+	        return;
+	    }
+
+	    Cliente clienteEncontrado = null;
+	    
+	    
+	    for (int i = 0; i < ArregloClientes.getNroClientes(); i++) {
+	        Cliente x = ArregloClientes.getCliente(i);
+	        if (x.getCodigoCliente() == codigoIngresado) { 
+	            clienteEncontrado = x;
+	            break;
+	        }
+	    }
+	    
+	    if (clienteEncontrado != null) {
+	        mensaje("      Cliente Encontrado\n" +
+	                "Codigo       : " + clienteEncontrado.getCodigoCliente() + "\n" +
+	                "Nombre     : " + clienteEncontrado.getNombres() + "\n" +
+	                "Apellido     : " + clienteEncontrado.getApellidos() + "\n" +
+	                "Direccion  : " + clienteEncontrado.getDireccion() + "\n" +
+	                "Telefono    : " + clienteEncontrado.getTelefono() + "\n" +
+	                "DNI              : " + clienteEncontrado.getDni());
+	        txtCodigo.setText("");
+	    } else {
+	        mensaje("El código ingresado no existe");
+	        txtCodigo.setText("");
+	    }
 	}
+
 	
    void listar() {
 		modelo.setRowCount(0);
@@ -134,6 +174,9 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 	}
 	
 	void mensaje(String s) {
-		JOptionPane.showMessageDialog(this, s,"Cliente",1);
+		JOptionPane.showMessageDialog(this, s,"Cliente",JOptionPane.INFORMATION_MESSAGE);
 	}	
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		dispose();
+	}
 }

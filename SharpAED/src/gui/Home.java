@@ -10,11 +10,11 @@ import arreglos.ArregloClientes;
 import arreglos.ArregloProductos;
 import arreglos.ArregloVentas;
 import guiClientes.AgregarCliente;
-//import guiClientes.ConsultarCliente;
+import guiClientes.ConsultarCliente;
 import guiClientes.EliminarCliente;
 import guiClientes.ListarClientes;
 import guiClientes.ModificarCliente;
-//import guiProducto.ConsultarProducto;
+import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
@@ -73,6 +73,7 @@ public class Home extends JDialog {
 			e.printStackTrace();
 		}
 	}
+
 
 	/**
 	 * Create the dialog.
@@ -138,12 +139,12 @@ public class Home extends JDialog {
 		mntmNewMenuItem_1 = new JMenuItem("Listar Productos");
 		mnNewMenu_5.add(mntmNewMenuItem_1);
 
-		//mntmNewMenuItem_2 = new JMenuItem("Buscar Producto");
-		//mntmNewMenuItem_2.addActionListener(new ActionListener() {
-		//	public void actionPerformed(ActionEvent e) {
-			//	actionPerformedMntmNewMenuItem_2(e);
-			//}
-		//});
+		mntmNewMenuItem_2 = new JMenuItem("Consultar Producto");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_2(e);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_2);
 
 		mntmNewMenuItem_4 = new JMenuItem("Modificar Producto");
@@ -168,12 +169,12 @@ public class Home extends JDialog {
 		mntmNewMenuItem_5 = new JMenuItem("Agregar Cliente");
 		mnNewMenu_6.add(mntmNewMenuItem_5);
 
-		//menuConsultarCliente = new JMenuItem("Consultar Cliente");
-		//menuConsultarCliente.addActionListener(new ActionListener() {
-			//public void actionPerformed(ActionEvent e) {
-			//	actionPerformedmenuConsultarCliente(e);
-			//}
-		//});
+		menuConsultarCliente = new JMenuItem("Consultar Cliente");
+	    menuConsultarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedmenuConsultarCliente(e);
+			}
+		});
 		mnNewMenu_6.add(menuConsultarCliente);
 
 		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
@@ -230,9 +231,9 @@ public class Home extends JDialog {
 		ListarClientes.abrirVentana();
 	}
 
-	//protected void actionPerformedmenuConsultarCliente(ActionEvent e) {
-		//ConsultarCliente.abrirVentana();
-	//}
+	protected void actionPerformedmenuConsultarCliente(ActionEvent e) {
+		ConsultarCliente.abrirVentana();
+	}
 
 	protected void actionPerformedBtnAgregarCliente(ActionEvent e) {
 		AgregarCliente.abrirVentana();
@@ -242,9 +243,9 @@ public class Home extends JDialog {
 		EliminarCliente.abrirVentana();
 	}
 
-	//protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
-	//	ConsultarProducto.abrirVentana();
-	//}
+	protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
+		 ConsultarProducto.abrirVentana();
+	}
 
 	protected void actionPerformedMntmNewMenuItem_3(ActionEvent e) {
 		EliminarProducto.abrirVentana();
@@ -254,4 +255,4 @@ public class Home extends JDialog {
 		ListarProducto.abrirVentana();
 	}
 
-}
+	}
