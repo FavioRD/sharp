@@ -1,5 +1,7 @@
 package guiClientes;
 
+import clases.Cliente;
+import arreglos.ArregloClientes;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -13,7 +15,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AgregarCliente extends JDialog {
+public class AgregarCliente extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -134,9 +136,30 @@ public class AgregarCliente extends JDialog {
 		panel.add(btnAgregar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(this);
 		btnCancelar.setBounds(193, 160, 89, 23);
 		panel.add(btnCancelar);
 	}
+	
+     arreglos.ArregloClientes arregloClientes = new ArregloClientes();
+	 
 	protected void actionPerformedBtnAgregar(ActionEvent e) {
+		String nombres = txtNombre.getText();
+		String apellidos = txtApellido.getText();
+		String dni = txtDni.getText();
+		String direccion = txtDireccion.getText();
+		String telefono = txtTelefono.getText();
+		 Cliente cliente = new Cliente(nombres, apellidos, direccion, telefono, dni);
+		 arregloClientes.agregarCliente(cliente);
+		 arregloClientes.actualizarClientes();
+		dispose();
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancelar) {
+			actionPerformedBtnCancelar(e);
+		}
+	}
+	protected void actionPerformedBtnCancelar(ActionEvent e) {
+		dispose();
 	}
 }
