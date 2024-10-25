@@ -23,7 +23,6 @@ public class ProductosStockMin extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
 	private JTable tblStockmin;
-	private JButton btnProcesar;
 	private DefaultTableModel modelo;
 
 	/**
@@ -47,7 +46,7 @@ public class ProductosStockMin extends JFrame implements ActionListener {
 	 */
 	public ProductosStockMin() {
 		setTitle("Productos con Stock Minimo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 658, 469);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,40 +71,15 @@ public class ProductosStockMin extends JFrame implements ActionListener {
 		tblStockmin.setModel(modelo);
 		ajustarAnchoColumnas();
 		listar();
-
-		btnProcesar = new JButton("Procesar");
-		btnProcesar.addActionListener(this);
-		btnProcesar.setBounds(269, 11, 89, 23);
-		contentPane.add(btnProcesar);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnProcesar) {
-			actionPerformedBtnProcesar(e);
-		}
-	}
-
-	arreglos.ArregloProductos ap = new ArregloProductos();
-
-	protected void actionPerformedBtnProcesar(ActionEvent e) {
-		for (int i = 0; i < ap.tamano(); i++) {
-			Producto x = ap.getProducto(i);
-
-			if (x.getStockActual() < x.getStockMinimo()) {
-				Object[] fila = { x.getCodigoProducto(), x.getNombre(), x.getStockActual(), x.getStockMinimo() };
-				modelo.addRow(fila);
-			}
-
-			if (modelo.getRowCount() == 0) {
-				mensaje("No hay productos con stock por debajo del mínimo.");
-			}
-		}
 	}
 
 	void listar() {
 		modelo.setRowCount(0);
-		for (int i = 0; i < ap.tamano(); i++) {
-			Producto p = ap.getProducto(i);
+		for (int i = 0; i < ArregloProductos.tamano(); i++) {
+			Producto p = ArregloProductos.getProducto(i);
 			Object[] fila = { p.getCodigoProducto(), p.getNombre(), p.getPrecio(), p.getStockActual(),
 					p.getStockMinimo(), };
 			modelo.addRow(fila);
