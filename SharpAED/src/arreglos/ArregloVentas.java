@@ -95,5 +95,9 @@ public class ArregloVentas {
 			e.printStackTrace();
 		}
 	}
+	
+	public static double getTotalAcumulado() {
+		return totalAcumulado;
+	}
 
 }

@@ -1,20 +1,17 @@
 package guiProducto;
 
-import clases.Producto;
+import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JDialog;
-
-import arreglos.ArregloProductos;
-import utilidades.Validacion;
-
 import javax.swing.JTextArea;
-import javax.swing.JComboBox;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import clases.Producto;
+import utilidades.Validacion;
+import arreglos.ArregloProductos;
 
 public class ModificarProducto extends JDialog {
 
@@ -27,11 +24,11 @@ public class ModificarProducto extends JDialog {
 	private JComboBox<Producto> cboProducto;
 	private JButton btnRegistrar;
 	private JButton btnCancelar;
+	private ArregloProductos arregloProducto; // Aquí estará el arreglo de productos
 
 	/**
 	 * Launch the application.
 	 */
-
 	public static void abrirVentana() {
 		try {
 			ModificarProducto dialog = new ModificarProducto();
@@ -42,12 +39,12 @@ public class ModificarProducto extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
 
 	/**
 	 * Create the dialog.
 	 */
 	public ModificarProducto() {
+
 		setBounds(100, 100, 579, 359);
 		getContentPane().setLayout(null);
 
@@ -56,9 +53,20 @@ public class ModificarProducto extends JDialog {
 		txtS.setBounds(280, 0, 283, 320);
 		getContentPane().add(txtS);
 
-		JComboBox<Producto> cboProducto = new JComboBox<Producto>();
+		
+		cboProducto = new JComboBox<Producto>();
 		cboProducto.setBounds(41, 30, 188, 22);
 		getContentPane().add(cboProducto);
+
+	
+		cargarProductosEnCombo();
+
+	
+		cboProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedcboProducto(e);
+			}
+		});
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
 		lblNewLabel_1.setBounds(10, 107, 109, 14);
@@ -119,16 +127,24 @@ public class ModificarProducto extends JDialog {
 		getContentPane().add(btnCancelar);
 	}
 
-	protected void actionPerformedcboProducto(ActionEvent e) {
 
+	private void cargarProductosEnCombo() {
+		for (int i = 0; i < ArregloProductos.tamano(); i++) {
+			Producto producto = ArregloProductos.getProducto(i);
+			cboProducto.addItem(producto);
+		}
+	}
+
+	protected void actionPerformedcboProducto(ActionEvent e) {
 		Producto productoSeleccionado = (Producto) cboProducto.getSelectedItem();
 
-		txtNombre.setText(productoSeleccionado.getNombre());
-		txtPrecio.setText("" + productoSeleccionado.getPrecio());
-		txtStockAct.setText("" + productoSeleccionado.getStockActual());
-		txtStockMin.setText("" + productoSeleccionado.getStockMinimo());
-		txtStockMax.setText("" + productoSeleccionado.getStockMaximo());
-
+		if (productoSeleccionado != null) {
+			txtNombre.setText(productoSeleccionado.getNombre());
+			txtPrecio.setText("" + productoSeleccionado.getPrecio());
+			txtStockAct.setText("" + productoSeleccionado.getStockActual());
+			txtStockMin.setText("" + productoSeleccionado.getStockMinimo());
+			txtStockMax.setText("" + productoSeleccionado.getStockMaximo());
+		}
 	}
 
 	protected void actionPerformedBtnRegistrar(ActionEvent e) {
@@ -137,7 +153,7 @@ public class ModificarProducto extends JDialog {
 
 	private void validarCampos() {
 		boolean nombreValido = Validacion.validarString(txtNombre.getText());
-		boolean precioValido = Validacion.validarPrecio(Integer.parseInt(txtPrecio.getText()));
+		boolean precioValido = Validacion.validarPrecio(Double.parseDouble(txtPrecio.getText()));
 		boolean stockActualValido = Validacion.validarStock(Integer.parseInt(txtStockAct.getText()));
 		boolean stockMinimoValido = Validacion.validarStockMinimo(Integer.parseInt(txtStockMin.getText()));
 		boolean stockMaximoValido = Validacion.validarStockMaximo(Integer.parseInt(txtStockMax.getText()));
@@ -147,7 +163,6 @@ public class ModificarProducto extends JDialog {
 		} else {
 			JOptionPane.showMessageDialog(null, "Datos incorrectos");
 		}
-
 	}
 
 	private void modificarProducto() {
@@ -161,5 +176,4 @@ public class ModificarProducto extends JDialog {
 		JOptionPane.showMessageDialog(null, "Producto modificado");
 		this.dispose();
 	}
-
 }
