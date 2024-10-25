@@ -17,7 +17,7 @@ import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class ProductosStockMin extends JFrame implements ActionListener {
+public class ProductosStockMin extends JFrame  {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -73,16 +73,16 @@ public class ProductosStockMin extends JFrame implements ActionListener {
 		listar();
 	}
 
-	public void actionPerformed(ActionEvent e) {
-	}
 
 	void listar() {
 		modelo.setRowCount(0);
 		for (int i = 0; i < ArregloProductos.tamano(); i++) {
 			Producto p = ArregloProductos.getProducto(i);
+			if(p.getStockActual() <= p.getStockMinimo()) {
 			Object[] fila = { p.getCodigoProducto(), p.getNombre(), p.getPrecio(), p.getStockActual(),
 					p.getStockMinimo(), };
 			modelo.addRow(fila);
+		}
 		}
 	}
 
