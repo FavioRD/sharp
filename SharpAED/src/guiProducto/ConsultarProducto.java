@@ -105,8 +105,6 @@ public class ConsultarProducto extends JFrame implements ActionListener {
 		}
 	}
 	
-	arreglos.ArregloProductos arregloProductos = new ArregloProductos();
-	
 	protected void actionPerformedBtnConsultar(ActionEvent e) {
 		
 		String codigoIngresadoStr = txtCodigop.getText().trim();
@@ -123,8 +121,8 @@ public class ConsultarProducto extends JFrame implements ActionListener {
 	    Producto productoEncontrado = null;
 	    
 	    
-	    for (int i = 0; i < arregloProductos.tamano(); i++) {
-	        Producto x = arregloProductos.getProducto(i);
+	    for (int i = 0; i < ArregloProductos.tamano(); i++) {
+	        Producto x = ArregloProductos.getProducto(i);
 	        if (x.getCodigoProducto() == codigoIngresado) { 
 	            productoEncontrado = x;
 	            break;
@@ -162,8 +160,8 @@ public class ConsultarProducto extends JFrame implements ActionListener {
 	
 	void listar() {
 		modelo.setRowCount(0);
-		for (int i = 0; i < arregloProductos.tamano(); i++) {
-            Producto x = arregloProductos.getProducto(i);
+		for (int i = 0; i < ArregloProductos.tamano(); i++) {
+            Producto x = ArregloProductos.getProducto(i);
             Object[] fila = { x.getCodigoProducto(), x.getNombre(), x.getPrecio(), x.getStockActual(), x.getStockMinimo(), x.getStockMaximo() };
             modelo.addRow(fila);
         }
