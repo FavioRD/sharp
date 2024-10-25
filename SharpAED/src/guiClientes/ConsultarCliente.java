@@ -110,7 +110,6 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 		}
 	}
 	
-	arreglos.ArregloClientes ArregloClientes = new ArregloClientes();
 	private JButton btnCerrar;
 	
 	
