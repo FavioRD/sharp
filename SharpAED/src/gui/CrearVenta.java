@@ -57,7 +57,7 @@ public class CrearVenta extends JDialog {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JButton btnCrearVenta;
-	private JButton btnNewButton_1;
+	private JButton btnCerrar;
 
 	private String cantidad = "0";
 	private JLabel lblNewLabel_4;
@@ -85,6 +85,7 @@ public class CrearVenta extends JDialog {
 		try {
 			CrearVenta dialog = new CrearVenta();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +96,7 @@ public class CrearVenta extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearVenta() {
+		setResizable(false);
 		setTitle("Crear Venta");
 		setBounds(100, 100, 645, 714);
 		getContentPane().setLayout(new BorderLayout());
@@ -179,9 +181,14 @@ public class CrearVenta extends JDialog {
 		btnCrearVenta.setBounds(401, 0, 141, 23);
 		panel_3.add(btnCrearVenta);
 
-		btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(401, 34, 141, 23);
-		panel_3.add(btnNewButton_1);
+		btnCerrar = new JButton("Cancelar");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnCerrar(e);
+			}
+		});
+		btnCerrar.setBounds(401, 34, 141, 23);
+		panel_3.add(btnCerrar);
 		btnCrearVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnCrearVenta(e);
@@ -283,13 +290,14 @@ public class CrearVenta extends JDialog {
 					obtenerProductoSeleccionado().getCodigoProducto(), Integer.parseInt(txtCantidad.getText()),
 					calcularSubtotal(), calcularIGV(), calcularTotal(), "20/02/2001"));
 			actualizarStock();
-			mostrarDescripcionProducto();
+			txtStockActual
+					.setText(Integer.parseInt(txtStockActual.getText()) - Integer.parseInt(txtCantidad.getText()) + "");
+
 			listarTablaProductos();
 			imprimirDetallesCliente(cliente);
 			System.out.println(calcularSubtotal() + " " + calcularIGV() + " " + calcularTotal());
-			
+
 			JOptionPane.showMessageDialog(null, "Venta creada correctamente.");
-			dispose();
 		}
 		;
 	}
@@ -379,4 +387,7 @@ public class CrearVenta extends JDialog {
 		return Double.parseDouble(totalString);
 	}
 
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		dispose();
+	}
 }

@@ -1,4 +1,0 @@
-1001;Juan;Perez;Av. Los Alamos 123;123456788;93932139
-1002;Maria;Carmos;Av. Los Pinos 456;987654321;12312312
-1003;Miguel;Duran;Av. Siempre Viva 31;727245628;32132132
-1004;Lionel;Messi;Av. Los Marcianos 313;934313127;77777777

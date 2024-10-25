@@ -3,7 +3,5 @@
 ventas.txt
 productos.txt
 clientes.txt
-SharpAED/productos.txt
-SharpAED/productos.txt
-*.txt
-SharpAED/productos.txt
+SharpAED/*.txt
+*.jar

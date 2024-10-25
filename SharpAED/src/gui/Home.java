@@ -18,6 +18,7 @@ import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
+import guiReportes.ListadoVentas;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -45,40 +46,58 @@ public class Home extends JDialog {
 	private JButton btnConfig;
 	private JMenu mnNewMenu_5;
 	private JMenu mnNewMenu_6;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_2;
-	private JMenuItem mntmNewMenuItem_3;
-	private JMenuItem mntmNewMenuItem_4;
-	private JMenuItem mntmNewMenuItem_5;
+	private JMenuItem itemAgregarProducto;
+	private JMenuItem itemListarProductos;
+	private JMenuItem itemBuscarProductos;
+	private JMenuItem itemBorrarProducto;
+	private JMenuItem itemModificarProducto;
+	private JMenuItem itemAgregarCliente;
 	private JMenuItem mntmNewMenuItem_6;
-	private JMenuItem mntmNewMenuItem_7;
-	private JMenuItem menuConsultarCliente;
-	private JMenuItem menuModificarCliente;
-	private JMenuItem mntmNewMenuItem_9;
+	private JMenuItem itemListarClientes;
+	private JMenuItem itemConsultarCliente;
+	private JMenuItem itemModificarCliente;
+	private JMenuItem itemBorrarCliente;
 
 	ArregloClientes arregloClientes = new ArregloClientes();
 	ArregloProductos arregloProductos = new ArregloProductos();
 	ArregloVentas arregloVentas = new ArregloVentas();
+	private JMenuItem itemAgregarStock;
+	private JMenuItem itemListarVentas;
+
 	/**
 	 * Launch the application.
 	 */
 
-	public static void abrirVentana() {
+	public static void abrirVentana(int rol) {
 		try {
 			Home dialog = new Home();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
+			if (rol != 1) {
+
+				dialog.btnAgregarCliente.setEnabled(false);
+				dialog.btnAgregarProducto.setEnabled(false);
+				dialog.btnConfig.setEnabled(false);
+				dialog.itemAgregarCliente.setEnabled(false);
+				dialog.itemAgregarProducto.setEnabled(false);
+				dialog.itemBorrarProducto.setEnabled(false);
+				dialog.itemModificarProducto.setEnabled(false);
+				dialog.itemModificarCliente.setEnabled(false);
+				dialog.itemBorrarCliente.setEnabled(false);
+
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	/**
 	 * Create the dialog.
 	 */
 	public Home() {
+		setResizable(false);
 		setTitle("SharpManager");
 		setBounds(100, 100, 823, 509);
 		getContentPane().setLayout(new BorderLayout());
@@ -119,6 +138,11 @@ public class Home extends JDialog {
 		panel.add(btnAgregarProducto);
 
 		btnGenerarReporte = new JButton("Generar Reporte");
+		btnGenerarReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnGenerarReporte(e);
+			}
+		});
 		panel.add(btnGenerarReporte);
 
 		btnConfig = new JButton("Configuración");
@@ -133,73 +157,73 @@ public class Home extends JDialog {
 		mnNewMenu_5 = new JMenu("Productos");
 		mnNewMenu.add(mnNewMenu_5);
 
-		mntmNewMenuItem = new JMenuItem("Agregar Producto");
-		mnNewMenu_5.add(mntmNewMenuItem);
+		itemAgregarProducto = new JMenuItem("Agregar Producto");
+		mnNewMenu_5.add(itemAgregarProducto);
 
-		mntmNewMenuItem_1 = new JMenuItem("Listar Productos");
-		mnNewMenu_5.add(mntmNewMenuItem_1);
+		itemListarProductos = new JMenuItem("Listar Productos");
+		mnNewMenu_5.add(itemListarProductos);
 
-		mntmNewMenuItem_2 = new JMenuItem("Consultar Producto");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		itemBuscarProductos = new JMenuItem("Buscar Producto");
+		itemBuscarProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMntmNewMenuItem_2(e);
 			}
 		});
-		mnNewMenu_5.add(mntmNewMenuItem_2);
+		mnNewMenu_5.add(itemBuscarProductos);
 
-		mntmNewMenuItem_4 = new JMenuItem("Modificar Producto");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+		itemModificarProducto = new JMenuItem("Modificar Producto");
+		itemModificarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMntmNewMenuItem_4(e);
 			}
 		});
-		mnNewMenu_5.add(mntmNewMenuItem_4);
+		mnNewMenu_5.add(itemModificarProducto);
 
-		mntmNewMenuItem_3 = new JMenuItem("Borrar Producto");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+		itemBorrarProducto = new JMenuItem("Borrar Producto");
+		itemBorrarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMntmNewMenuItem_3(e);
 			}
 		});
-		mnNewMenu_5.add(mntmNewMenuItem_3);
+		mnNewMenu_5.add(itemBorrarProducto);
 
 		mnNewMenu_6 = new JMenu("Clientes");
 		mnNewMenu.add(mnNewMenu_6);
 
-		mntmNewMenuItem_5 = new JMenuItem("Agregar Cliente");
-		mnNewMenu_6.add(mntmNewMenuItem_5);
+		itemAgregarCliente = new JMenuItem("Agregar Cliente");
+		mnNewMenu_6.add(itemAgregarCliente);
 
-		menuConsultarCliente = new JMenuItem("Consultar Cliente");
-	    menuConsultarCliente.addActionListener(new ActionListener() {
+		itemConsultarCliente = new JMenuItem("Consultar Cliente");
+		itemConsultarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedmenuConsultarCliente(e);
 			}
 		});
-		mnNewMenu_6.add(menuConsultarCliente);
+		mnNewMenu_6.add(itemConsultarCliente);
 
-		mntmNewMenuItem_7 = new JMenuItem("Listar Clientes");
-		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+		itemListarClientes = new JMenuItem("Listar Clientes");
+		itemListarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMntmNewMenuItem_7(e);
 			}
 		});
-		mnNewMenu_6.add(mntmNewMenuItem_7);
+		mnNewMenu_6.add(itemListarClientes);
 
-		menuModificarCliente = new JMenuItem("Modificar Cliente");
-		menuModificarCliente.addActionListener(new ActionListener() {
+		itemModificarCliente = new JMenuItem("Modificar Cliente");
+		itemModificarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMenuModificarCliente(e);
 			}
 		});
-		mnNewMenu_6.add(menuModificarCliente);
+		mnNewMenu_6.add(itemModificarCliente);
 
-		mntmNewMenuItem_9 = new JMenuItem("Borrar Cliente");
-		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+		itemBorrarCliente = new JMenuItem("Borrar Cliente");
+		itemBorrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedMntmNewMenuItem_9(e);
 			}
 		});
-		mnNewMenu_6.add(mntmNewMenuItem_9);
+		mnNewMenu_6.add(itemBorrarCliente);
 
 		mnNewMenu_1 = new JMenu("Ventas");
 		menuBar.add(mnNewMenu_1);
@@ -207,8 +231,24 @@ public class Home extends JDialog {
 		mnNewMenu_2 = new JMenu("Almacen");
 		menuBar.add(mnNewMenu_2);
 
+		itemAgregarStock = new JMenuItem("Agregar Stock");
+		itemAgregarStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_8(e);
+			}
+		});
+		mnNewMenu_2.add(itemAgregarStock);
+
 		mnNewMenu_3 = new JMenu("Reportes");
 		menuBar.add(mnNewMenu_3);
+
+		itemListarVentas = new JMenuItem("Listar Ventas");
+		itemListarVentas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmNewMenuItem_10(e);
+			}
+		});
+		mnNewMenu_3.add(itemListarVentas);
 
 		mnNewMenu_4 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_4);
@@ -244,7 +284,7 @@ public class Home extends JDialog {
 	}
 
 	protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
-		 ConsultarProducto.abrirVentana();
+		ConsultarProducto.abrirVentana();
 	}
 
 	protected void actionPerformedMntmNewMenuItem_3(ActionEvent e) {
@@ -255,4 +295,15 @@ public class Home extends JDialog {
 		ListarProducto.abrirVentana();
 	}
 
+	protected void actionPerformedMntmNewMenuItem_8(ActionEvent e) {
+		AgregarStock.abrirVentana();
 	}
+
+	protected void actionPerformedMntmNewMenuItem_10(ActionEvent e) {
+		ListadoVentas.abrirVentana();
+	}
+
+	protected void actionPerformedBtnGenerarReporte(ActionEvent e) {
+		SeleccionarReporte.abrirVentana();
+	}
+}

@@ -36,6 +36,7 @@ public class ConsultarProducto extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					ConsultarProducto frame = new ConsultarProducto();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

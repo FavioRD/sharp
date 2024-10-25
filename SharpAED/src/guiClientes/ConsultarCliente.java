@@ -40,6 +40,7 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					ConsultarCliente frame = new ConsultarCliente();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

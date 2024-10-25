@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import clases.Archivo;
 import clases.Cliente;
 import clases.Producto;
 
@@ -14,19 +15,24 @@ public class ArregloClientes {
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private static int nroClientes;
 
+	static Archivo archivo = new Archivo("clientes.txt");
+
 	public ArregloClientes() {
-//		Cliente cliente1 = new Cliente("Juan", "Perez", "Av. Los Alamos 123", "123456788", "93932139");
-//		Cliente cliente2 = new Cliente("Maria", "Carmos", "Av. Los Pinos 456", "987654321", "12312312");
-//		Cliente cliente3 = new Cliente("Miguel", "Duran", "Av. Siempre Viva 31", "727245628", "32132132");
-//		Cliente cliente4 = new Cliente("Lionel", "Messi", "Av. Los Marcianos 313", "934313127", "77777777");
-//
-//		if (clientes.isEmpty()) {
-//			agregarCliente(cliente1);
-//			agregarCliente(cliente2);
-//			agregarCliente(cliente3);
-//			agregarCliente(cliente4);
-//			guardarClientes();
-//		}
+		if (!archivo.archivoExiste() || archivo.archivoVacio()) {
+
+			if (clientes.isEmpty()) {
+				Cliente cliente1 = new Cliente("Juan", "Perez", "Av. Los Alamos 123", "123456788", "93932139");
+				Cliente cliente2 = new Cliente("Maria", "Carmos", "Av. Los Pinos 456", "987654321", "12312312");
+				Cliente cliente3 = new Cliente("Miguel", "Duran", "Av. Siempre Viva 31", "727245628", "32132132");
+				Cliente cliente4 = new Cliente("Lionel", "Messi", "Av. Los Marcianos 313", "934313127", "77777777");
+
+				agregarCliente(cliente1);
+				agregarCliente(cliente2);
+				agregarCliente(cliente3);
+				agregarCliente(cliente4);
+				guardarClientes();
+			}
+		}
 		cargarClientes();
 		nroClientes = clientes.size();
 	}
@@ -72,14 +78,16 @@ public class ArregloClientes {
 
 	public void guardarClientes() {
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter("clientes.txt", true));
+			String linea = "";
+
 			for (Cliente cliente : clientes) {
-				pw.println(cliente.getCodigoCliente() + ";" + cliente.getNombres() + ";" + cliente.getApellidos() + ";"
-						+ cliente.getDireccion() + ";" + cliente.getTelefono() + ";" + cliente.getDni());
+				linea  = cliente.getCodigoCliente() + ";" + cliente.getNombres() + ";" + cliente.getApellidos() + ";" + cliente.getDireccion() + ";" + cliente.getTelefono() + ";" + cliente.getDni();
+
+				archivo.escribirArchivo(linea);
 			}
-			pw.close();
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error al guardar productos");
 		}
 	}
 

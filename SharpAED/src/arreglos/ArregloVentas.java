@@ -11,6 +11,8 @@ import clases.Venta;
 
 public class ArregloVentas {
 
+	private static double totalAcumulado;
+	
 	private static ArrayList<Venta> ventas = new ArrayList<>();
 
 	private static int ultimoCodigoVenta = 0;
@@ -18,6 +20,7 @@ public class ArregloVentas {
 	static Archivo archivo = new Archivo("ventas.txt");
 
 	public ArregloVentas() {
+		
 		if (!archivo.archivoExiste() || archivo.archivoVacio()) {
 			Venta venta1 = new Venta(2001, 1001, 1, 131, 341, 100, "2021/07/01");
 			Venta venta2 = new Venta(2002, 1002, 2, 262, 682, 200, "2021/07/02");
@@ -37,11 +40,12 @@ public class ArregloVentas {
 
 	}
 
-	public ArrayList<Venta> getVentas() {
+	public static ArrayList<Venta> getVentas() {
 		return ventas;
 	}
 
 	public static void agregarVenta(Venta venta) {
+		totalAcumulado += venta.getPrecio();	
 		ventas.add(venta);
 	}
 
