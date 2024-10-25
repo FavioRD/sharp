@@ -14,6 +14,7 @@ import guiClientes.ConsultarCliente;
 import guiClientes.EliminarCliente;
 import guiClientes.ListarClientes;
 import guiClientes.ModificarCliente;
+import guiProducto.AgregarProducto;
 import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
@@ -154,6 +155,11 @@ public class Home extends JDialog {
 		panel.add(btnListarProductos);
 
 		btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnAgregarProducto(e);
+			}
+		});
 		btnAgregarProducto.setBackground(new Color(255, 255, 255));
 		btnAgregarProducto.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnAgregarProducto.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -341,5 +347,8 @@ public class Home extends JDialog {
 
 	protected void actionPerformedBtnGenerarReporte(ActionEvent e) {
 		SeleccionarReporte.abrirVentana();
+	}
+	protected void actionPerformedBtnAgregarProducto(ActionEvent e) {
+		AgregarProducto.abrirVentana();
 	}
 }

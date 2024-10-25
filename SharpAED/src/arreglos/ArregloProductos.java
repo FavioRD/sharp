@@ -63,7 +63,7 @@ public class ArregloProductos {
 		productos.set(i, producto);
 	}
 
-	public void agregarProducto(Producto producto) {
+	public static void agregarProducto(Producto producto) {
 		productos.add(producto);
 	}
 
