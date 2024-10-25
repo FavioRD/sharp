@@ -170,7 +170,7 @@ public class AgregarProducto extends JFrame implements ActionListener {
 	        int stockMinimo = Integer.parseInt(stockMinimoTexto);
 	        int stockMaximo = Integer.parseInt(stockMaximoTexto);
 
-	        Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, 0);
+	        Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, 0, 0);
 	        ArregloProductos.agregarProducto(producto);
 	        ArregloProductos.actualizarProductos();
 	        listar();

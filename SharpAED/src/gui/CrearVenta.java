@@ -77,9 +77,10 @@ public class CrearVenta extends JDialog {
 	private JPanel panel_2;
 	private JLabel txtStockActual;
 	private JPanel panel_3;
-	
+
 	private LocalDateTime fecha = LocalDateTime.now();
 	private String fechaString = fecha.getDayOfMonth() + "/" + fecha.getMonthValue() + "/" + fecha.getYear();
+
 	/**
 	 * Launch the application.
 	 */
@@ -304,9 +305,9 @@ public class CrearVenta extends JDialog {
 			ArregloProductos.modificarProducto(cboProductos.getSelectedIndex(),
 					new Producto(producto.getNombre(), producto.getPrecio(), producto.getStockActual(),
 							producto.getStockMinimo(), producto.getStockMaximo(),
-							producto.getTotalAcumulado() + calcularTotal()));
+							producto.getTotalAcumulado() + calcularTotal(),
+							producto.getCantidadVendida() + Integer.parseInt(txtCantidad.getText())));
 			ArregloProductos.actualizarProductos();
-			System.out.println(calcularSubtotal() + " " + calcularIGV() + " " + calcularTotal());
 
 			JOptionPane.showMessageDialog(null, "Venta creada correctamente.");
 		}
@@ -333,7 +334,7 @@ public class CrearVenta extends JDialog {
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 
 		ArregloProductos.modificarProducto(pos, new Producto(producto.getNombre(), producto.getPrecio(),
-				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo(), producto.getTotalAcumulado()));
+				stock - cantidad, producto.getStockMinimo(), producto.getStockMaximo(), producto.getTotalAcumulado(), producto.getCantidadVendida() + cantidad));
 		ArregloProductos.actualizarProductos();
 	}
 

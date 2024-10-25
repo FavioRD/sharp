@@ -113,7 +113,7 @@ public class AgregarStock extends JDialog {
 
 	private void actualizarStock(Producto prod, int pos) {
 		ArregloProductos.modificarProducto(pos, new Producto(prod.getNombre(), prod.getPrecio(),
-				prod.getStockActual() + getNuevoStock(), prod.getStockMinimo(), prod.getStockMaximo(), prod.getTotalAcumulado()));
+				prod.getStockActual() + getNuevoStock(), prod.getStockMinimo(), prod.getStockMaximo(), prod.getTotalAcumulado(), prod.getCantidadVendida()));
 		ArregloProductos.actualizarProductos();
 		JOptionPane.showMessageDialog(this, "Stock actualizado");
 

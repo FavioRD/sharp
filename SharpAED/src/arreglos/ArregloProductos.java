@@ -23,10 +23,10 @@ public class ArregloProductos {
 		if (!archivo.archivoExiste() || archivo.archivoVacio()) {
 
 			if (productos.isEmpty()) {
-				Producto producto1 = new Producto("mouse", 15.00, 60, 25, 100, 0);
-				Producto producto2 = new Producto("case", 240.5, 34, 17, 60, 0);
-				Producto producto3 = new Producto("monitor", 340.70, 70, 46, 120, 0);
-				Producto producto4 = new Producto("teclado", 120, 56, 19, 70, 0);
+				Producto producto1 = new Producto("mouse", 15.00, 60, 25, 100, 0, 0);
+				Producto producto2 = new Producto("case", 240.5, 34, 17, 60, 0, 0);
+				Producto producto3 = new Producto("monitor", 340.70, 70, 46, 120, 0, 0);
+				Producto producto4 = new Producto("teclado", 120, 56, 19, 70, 0, 0);
 
 				agregarProducto(producto1);
 				agregarProducto(producto2);
@@ -91,7 +91,7 @@ public class ArregloProductos {
 			for (int i = 0; i < productos.size(); i++) {
 				Producto x = productos.get(i);
 				linea = x.getCodigoProducto() + ";" + x.getNombre() + ";" + x.getPrecio() + ";" + x.getStockActual()
-						+ ";" + x.getStockMinimo() + ";" + x.getStockMaximo() + ";" + x.getTotalAcumulado();
+						+ ";" + x.getStockMinimo() + ";" + x.getStockMaximo() + ";" + x.getTotalAcumulado() + ";" + x.getCantidadVendida();
 
 				archivo.escribirArchivo(linea);
 			}
@@ -122,9 +122,11 @@ public class ArregloProductos {
 				int stockActual = Integer.parseInt(fila[3]);
 				int stockMinimo = Integer.parseInt(fila[4]);
 				int stockMaximo = Integer.parseInt(fila[5]);
+				
 				System.out.println(fila[6]);
 				double totalAcumulado = Double.parseDouble(fila[6]);
-				Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, totalAcumulado);
+				int cantidadVendida = Integer.parseInt(fila[7]);
+				Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, totalAcumulado, cantidadVendida);
 
 				agregarProducto(producto);
 			}
