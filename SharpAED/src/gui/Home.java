@@ -14,11 +14,13 @@ import guiClientes.ConsultarCliente;
 import guiClientes.EliminarCliente;
 import guiClientes.ListarClientes;
 import guiClientes.ModificarCliente;
+import guiProducto.AgregarProducto;
 import guiProducto.ConsultarProducto;
 import guiProducto.EliminarProducto;
 import guiProducto.ListarProducto;
 import guiProducto.ModificarProducto;
 import guiReportes.ListadoVentas;
+import utilidades.Colores;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -26,6 +28,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.ComponentOrientation;
 
 public class Home extends JDialog {
 
@@ -63,6 +69,7 @@ public class Home extends JDialog {
 	ArregloVentas arregloVentas = new ArregloVentas();
 	private JMenuItem itemAgregarStock;
 	private JMenuItem itemListarVentas;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -106,11 +113,16 @@ public class Home extends JDialog {
 		contentPanel.setLayout(null);
 
 		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(109, 71, 588, 306);
 		contentPanel.add(panel);
 		panel.setLayout(new GridLayout(0, 3, 10, 10));
 
 		btnRegistrarVenta = new JButton("Registrar Venta");
+		btnRegistrarVenta.setBackground(new Color(255, 255, 255));
+		btnRegistrarVenta.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnRegistrarVenta.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnRegistrarVenta.setIcon(new ImageIcon(Home.class.getResource("/imagenes/vender.png")));
 		btnRegistrarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnRegistrarVenta(e);
@@ -119,6 +131,10 @@ public class Home extends JDialog {
 		panel.add(btnRegistrarVenta);
 
 		btnAgregarCliente = new JButton("Agregar Cliente");
+		btnAgregarCliente.setBackground(new Color(255, 255, 255));
+		btnAgregarCliente.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnAgregarCliente.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAgregarCliente.setIcon(new ImageIcon(Home.class.getResource("/imagenes/cliente.png")));
 		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnAgregarCliente(e);
@@ -127,6 +143,10 @@ public class Home extends JDialog {
 		panel.add(btnAgregarCliente);
 
 		btnListarProductos = new JButton("Listar Productos");
+		btnListarProductos.setBackground(new Color(255, 255, 255));
+		btnListarProductos.setIcon(new ImageIcon(Home.class.getResource("/imagenes/paquete-o-empaquetar.png")));
+		btnListarProductos.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnListarProductos.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnListarProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnListarProductos(e);
@@ -135,9 +155,22 @@ public class Home extends JDialog {
 		panel.add(btnListarProductos);
 
 		btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnAgregarProducto(e);
+			}
+		});
+		btnAgregarProducto.setBackground(new Color(255, 255, 255));
+		btnAgregarProducto.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnAgregarProducto.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAgregarProducto.setIcon(new ImageIcon(Home.class.getResource("/imagenes/agregar-producto.png")));
 		panel.add(btnAgregarProducto);
 
 		btnGenerarReporte = new JButton("Generar Reporte");
+		btnGenerarReporte.setBackground(new Color(255, 255, 255));
+		btnGenerarReporte.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnGenerarReporte.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnGenerarReporte.setIcon(new ImageIcon(Home.class.getResource("/imagenes/icons8-por-nueva-copia-64.png")));
 		btnGenerarReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnGenerarReporte(e);
@@ -146,7 +179,16 @@ public class Home extends JDialog {
 		panel.add(btnGenerarReporte);
 
 		btnConfig = new JButton("Configuración");
+		btnConfig.setBackground(new Color(255, 255, 255));
+		btnConfig.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnConfig.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnConfig.setIcon(new ImageIcon(Home.class.getResource("/imagenes/icons8-configurador-64.png")));
 		panel.add(btnConfig);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 817, 448);
+		contentPanel.add(panel_1);
 
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -305,5 +347,8 @@ public class Home extends JDialog {
 
 	protected void actionPerformedBtnGenerarReporte(ActionEvent e) {
 		SeleccionarReporte.abrirVentana();
+	}
+	protected void actionPerformedBtnAgregarProducto(ActionEvent e) {
+		AgregarProducto.abrirVentana();
 	}
 }

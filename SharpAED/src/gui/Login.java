@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import utilidades.Colores;
 import utilidades.Validacion;
 
 import javax.swing.JTextField;
@@ -67,7 +68,7 @@ public class Login extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 94, 98));
+		panel.setBackground(Colores.ROJO);
 		panel.setForeground(Color.BLACK);
 		panel.setBounds(335, 0, 387, 446);
 		contentPane.add(panel);

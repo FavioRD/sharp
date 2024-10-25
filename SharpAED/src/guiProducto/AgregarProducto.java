@@ -41,17 +41,16 @@ public class AgregarProducto extends JFrame implements ActionListener {
 	private JTable table;
 	private JLabel lblNewLabel_5;
 	
-	ArregloProductos arregloProducto=new ArregloProductos();
-
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					AgregarProducto frame = new AgregarProducto();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +63,7 @@ public class AgregarProducto extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public AgregarProducto() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 564, 527);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -171,8 +170,9 @@ public class AgregarProducto extends JFrame implements ActionListener {
 	        int stockMinimo = Integer.parseInt(stockMinimoTexto);
 	        int stockMaximo = Integer.parseInt(stockMaximoTexto);
 
-	        Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, 0.0);
-	        arregloProducto.agregarProducto(producto);
+	        Producto producto = new Producto(nombre, precio, stockActual, stockMinimo, stockMaximo, 0);
+	        ArregloProductos.agregarProducto(producto);
+	        ArregloProductos.actualizarProductos();
 	        listar();
 	    } catch (NumberFormatException e) {
 	    	JOptionPane.showMessageDialog(null, "Agrega valores numericos validos en los campos de Precio y Stock");
@@ -183,11 +183,11 @@ public class AgregarProducto extends JFrame implements ActionListener {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 
-		for (int i = 0; i < arregloProducto.tamano(); i++) {
-			model.addRow(new Object[] { arregloProducto.getProducto(i).getCodigoProducto(),
-					arregloProducto.getProducto(i).getNombre(), arregloProducto.getProducto(i).getPrecio(),
-					arregloProducto.getProducto(i).getStockActual(),
-					arregloProducto.getProducto(i).getStockMinimo(), arregloProducto.getProducto(i).getStockMaximo() });
+		for (int i = 0; i < ArregloProductos.tamano(); i++) {
+			model.addRow(new Object[] { ArregloProductos.getProducto(i).getCodigoProducto(),
+					ArregloProductos.getProducto(i).getNombre(), ArregloProductos.getProducto(i).getPrecio(),
+					ArregloProductos.getProducto(i).getStockActual(),
+					ArregloProductos.getProducto(i).getStockMinimo(), ArregloProductos.getProducto(i).getStockMaximo() });
 		}
 
 	}
