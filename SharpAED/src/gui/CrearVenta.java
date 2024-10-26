@@ -378,16 +378,16 @@ public class CrearVenta extends JDialog {
 		int cantidad = Integer.parseInt(txtCantidad.getText());
 		double precio = producto.getPrecio();
 		double subtotal = cantidad * precio;
-		String subtotalString = String.format("%.2f", subtotal);
-		return Double.parseDouble(subtotalString);
+//		String subtotalString = String.format("%.2f", subtotal);
+		return subtotal;
 	}
 
 	private double calcularIGV() {
 		double subtotal = calcularSubtotal();
 		double igv = Double.parseDouble(txtIGV.getText());
 		double igvTotal = subtotal * (igv / 100);
-		String igvString = String.format("%.2f", igvTotal);
-		return Double.parseDouble(igvString);
+//		String igvString = String.format("%.2f", igvTotal);
+		return igvTotal;
 	}
 
 	private double calcularTotal() {
@@ -395,9 +395,9 @@ public class CrearVenta extends JDialog {
 		double subtotal = calcularSubtotal();
 		double igv = calcularIGV();
 		double total = subtotal + igv;
-		String totalString = String.format("%.2f", total);
+//		String totalString = String.format("%.2f", total);
 
-		return Double.parseDouble(totalString);
+		return total;
 
 	}
 

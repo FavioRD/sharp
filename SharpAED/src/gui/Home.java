@@ -93,7 +93,6 @@ public class Home extends JDialog {
 
 				dialog.btnAgregarCliente.setEnabled(false);
 				dialog.btnAgregarProducto.setEnabled(false);
-				dialog.btnConfig.setEnabled(false);
 				dialog.itemAgregarCliente.setEnabled(false);
 				dialog.itemAgregarProducto.setEnabled(false);
 				dialog.itemBorrarProducto.setEnabled(false);
