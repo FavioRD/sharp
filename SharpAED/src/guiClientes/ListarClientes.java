@@ -13,10 +13,13 @@ import javax.swing.table.DefaultTableModel;
 
 import arreglos.ArregloClientes;
 import clases.Cliente;
+import utilidades.Colores;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class ListarClientes extends JDialog {
 
@@ -26,6 +29,7 @@ public class ListarClientes extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private JButton btnListar;
+	private JLabel lblNewLabel;
 	
 	
 	
@@ -48,6 +52,7 @@ public class ListarClientes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarClientes() {
+		setTitle("Listar Clientes");
 		setBounds(100, 100, 584, 379);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,8 +81,14 @@ public class ListarClientes extends JDialog {
 				actionPerformedBtnListar(e);
 			}
 		});
-		btnListar.setBounds(39, 33, 89, 23);
+		btnListar.setBounds(10, 61, 89, 23);
 		contentPanel.add(btnListar);
+		
+		lblNewLabel = new JLabel("Listar Clientes");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel.setForeground(Colores.AZUL);
+		lblNewLabel.setBounds(10, 28, 177, 22);
+		contentPanel.add(lblNewLabel);
 	}
 	protected void actionPerformedBtnListar(ActionEvent e) {
 		listarClientes();

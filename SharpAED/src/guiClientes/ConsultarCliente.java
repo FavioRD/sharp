@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import arreglos.ArregloClientes;
 import clases.Cliente;
+import utilidades.Colores;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -55,24 +57,15 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 	public ConsultarCliente() {
 		setTitle("Consultar Cliente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 687, 453);
+		setBounds(100, 100, 687, 528);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblNewLabel = new JLabel("Código:");
-		lblNewLabel.setBounds(40, 41, 80, 14);
-		contentPane.add(lblNewLabel);
-		
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(91, 38, 86, 20);
-		contentPane.add(txtCodigo);
-		txtCodigo.setColumns(10);
-		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 82, 651, 321);
+		scrollPane.setBounds(0, 168, 671, 321);
 		contentPane.add(scrollPane);
 		
 		tblCliente = new JTable();
@@ -90,15 +83,39 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 		ajustarAnchoColumnas();
 		listar();
 		
-		btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(this);
-		btnConsultar.setBounds(543, 11, 89, 23);
-		contentPane.add(btnConsultar);
+		panel = new JPanel();
+		panel.setBounds(0, 0, 671, 169);
+		panel.setBackground(getForeground());
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		lblNewLabel = new JLabel("Código:");
+		lblNewLabel.setBounds(35, 37, 80, 19);
+		panel.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(112, 38, 122, 20);
+		panel.add(txtCodigo);
+		txtCodigo.setColumns(10);
 		
 		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCerrar.setBorderPainted(false);
+		btnCerrar.setBackground(Colores.ROJO);
+		btnCerrar.setForeground(Color.WHITE);
+		btnCerrar.setBounds(511, 82, 122, 34);
+		panel.add(btnCerrar);
+		
+		btnConsultar = new JButton("Consultar");
+		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnConsultar.setForeground(new Color(255, 255, 255));
+		btnConsultar.setBorderPainted(false);
+		btnConsultar.setBackground(Colores.VERDE);
+		btnConsultar.setBounds(511, 37, 122, 34);
+		panel.add(btnConsultar);
+		btnConsultar.addActionListener(this);
 		btnCerrar.addActionListener(this);
-		btnCerrar.setBounds(543, 45, 89, 23);
-		contentPane.add(btnCerrar);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -111,6 +128,7 @@ public class ConsultarCliente extends JFrame implements ActionListener {
 	}
 	
 	private JButton btnCerrar;
+	private JPanel panel;
 	
 	
 	protected void actionPerformedBtnConsultar(ActionEvent e) {

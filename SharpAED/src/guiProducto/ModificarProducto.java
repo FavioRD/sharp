@@ -173,7 +173,7 @@ public class ModificarProducto extends JDialog {
 				Integer.parseInt(txtStockMax.getText()), ArregloProductos.getProducto(i).getTotalAcumulado(), ArregloProductos.getProducto(i).getCantidadVendida());
 
 		ArregloProductos.modificarProducto(i, producto);
-
+		ArregloProductos.actualizarProductos();
 		JOptionPane.showMessageDialog(null, "Producto modificado");
 		this.dispose();
 	}

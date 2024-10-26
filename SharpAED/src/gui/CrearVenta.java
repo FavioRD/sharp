@@ -170,13 +170,12 @@ public class CrearVenta extends JDialog {
 		txtPrecio = new JLabel("S/ 0.00");
 		panel.add(txtPrecio);
 
-		lblNewLabel_3 = new JLabel("IGV");
+		lblNewLabel_3 = new JLabel("IGV (%)");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel.add(lblNewLabel_3);
 
 		txtIGV = new JTextField();
 		txtIGV.setText("3");
-		txtIGV.setEnabled(false);
 		txtIGV.setEditable(false);
 		panel.add(txtIGV);
 		txtIGV.setColumns(10);

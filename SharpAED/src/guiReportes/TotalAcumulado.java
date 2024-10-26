@@ -15,14 +15,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import arreglos.ArregloProductos;
 import clases.Producto;
+import java.awt.Font;
+import java.awt.Color;
 public class TotalAcumulado extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JScrollPane scrollPane;
-	private JButton btnProcesar;
 	private JTable table;
 	private DefaultTableModel model;
+	private JLabel lblListadoDeProductos;
 
 	/**
 	 * Launch the application.
@@ -66,22 +68,15 @@ public class TotalAcumulado extends JDialog {
 		model.addColumn("Total Acumulado");
 		table.setModel(model);
 		
-		btnProcesar = new JButton("Procesar");
-		btnProcesar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				actionPerformedBtnProcesar(e);
-			}
-		});
-		btnProcesar.setBounds(245, 27, 89, 23);
-		contentPanel.add(btnProcesar);
-	}
-	
-	
-	protected void actionPerformedBtnProcesar(ActionEvent e) {
+		lblListadoDeProductos = new JLabel("Listado de productos por importe total acumulado");
+		lblListadoDeProductos.setForeground(new Color(0, 153, 255));
+		lblListadoDeProductos.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblListadoDeProductos.setBounds(10, 36, 520, 35);
+		contentPanel.add(lblListadoDeProductos);
+		
 		model.setRowCount(0);
         for (Producto p : ArregloProductos.getProductos()) {
             model.addRow(new Object[] {p.getCodigoProducto(), p.getNombre(), p.getTotalAcumulado()});
         }
-        
 	}
 }

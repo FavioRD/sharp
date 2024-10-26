@@ -10,6 +10,10 @@ import javax.swing.table.DefaultTableModel;
 
 import arreglos.ArregloProductos;
 import clases.Producto;
+import utilidades.Colores;
+
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class CantidadAcumulada extends JDialog {
 
@@ -17,6 +21,7 @@ public class CantidadAcumulada extends JDialog {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private JLabel lblNewLabel;
 	/**
 	 * Launch the application.
 	 */
@@ -27,6 +32,7 @@ public class CantidadAcumulada extends JDialog {
 				try {
 					CantidadAcumulada dialog = new CantidadAcumulada();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setLocationRelativeTo(null);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +68,13 @@ public class CantidadAcumulada extends JDialog {
 		}
 		
 		table.setFillsViewportHeight(true);
-		scrollPane.setViewportView(table);
+		scrollPane.setColumnHeaderView(table);
+		
+		lblNewLabel = new JLabel("Listado de productos por unidades vendidas acumuladas");
+		lblNewLabel.setForeground(Colores.AZUL);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setBounds(10, 25, 520, 35);
+		getContentPane().add(lblNewLabel);
 
 	}
 }

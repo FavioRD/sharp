@@ -1,6 +1,7 @@
 package guiClientes;
 
 import clases.Cliente;
+import utilidades.Colores;
 import arreglos.ArregloClientes;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -18,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class AgregarCliente extends JDialog implements ActionListener {
 
@@ -59,19 +61,20 @@ public class AgregarCliente extends JDialog implements ActionListener {
 	 */
 	public AgregarCliente() {
 		setTitle("Agregar Cliente");
-		setBounds(100, 100, 382, 317);
+		setBounds(100, 100, 391, 357);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		lblNewLabel = new JLabel("Agregar Cliente");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(117, 11, 132, 21);
+		lblNewLabel.setForeground(Colores.AZUL);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(42, 36, 208, 25);
 		contentPanel.add(lblNewLabel);
 
 		panel = new JPanel();
-		panel.setBounds(37, 43, 292, 211);
+		panel.setBounds(42, 72, 292, 211);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
@@ -83,27 +86,27 @@ public class AgregarCliente extends JDialog implements ActionListener {
 		lblNewLabel_1 = new JLabel("Nombre");
 		lblNewLabel_1.setBounds(0, 1, 81, 14);
 		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		lblNewLabel_2 = new JLabel("Apellido");
 		lblNewLabel_2.setBounds(0, 26, 81, 14);
 		panel_1.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		lblNewLabel_3 = new JLabel("DNI");
 		lblNewLabel_3.setBounds(0, 51, 81, 14);
 		panel_1.add(lblNewLabel_3);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		lblNewLabel_4 = new JLabel("Direccion");
 		lblNewLabel_4.setBounds(0, 76, 81, 14);
 		panel_1.add(lblNewLabel_4);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		lblNewLabel_5 = new JLabel("Telefono");
 		lblNewLabel_5.setBounds(0, 101, 81, 14);
 		panel_1.add(lblNewLabel_5);
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		txtNombre = new JTextField();
 		txtNombre.setBounds(149, 1, 123, 20);
@@ -131,17 +134,24 @@ public class AgregarCliente extends JDialog implements ActionListener {
 		txtTelefono.setColumns(10);
 
 		btnAgregar = new JButton("Agregar Cliente");
+		btnAgregar.setForeground(new Color(255, 255, 255));
+		btnAgregar.setBorder(null);
+		btnAgregar.setBorderPainted(false);
+		btnAgregar.setBackground(Colores.VERDE);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnAgregar(e);
 			}
 		});
-		btnAgregar.setBounds(10, 160, 107, 23);
+		btnAgregar.setBounds(10, 150, 127, 33);
 		panel.add(btnAgregar);
 
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setBorderPainted(false);
+		btnCancelar.setBackground(Colores.ROJO);
 		btnCancelar.addActionListener(this);
-		btnCancelar.setBounds(193, 160, 89, 23);
+		btnCancelar.setBounds(155, 150, 127, 33);
 		panel.add(btnCancelar);
 	}
 

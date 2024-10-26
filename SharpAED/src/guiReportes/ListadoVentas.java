@@ -17,6 +17,9 @@ import clases.Venta;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ListadoVentas extends JDialog {
 
@@ -25,7 +28,7 @@ public class ListadoVentas extends JDialog {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private DefaultTableModel model;
-	private JButton btnProcesar;
+	private JLabel lblListadoDeVentas;
 
 	/**
 	 * Launch the application.
@@ -46,14 +49,15 @@ public class ListadoVentas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListadoVentas() {
-		setBounds(100, 100, 539, 387);
+		setTitle("Listado de ventas");
+		setBounds(100, 100, 625, 387);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 136, 503, 201);
+		scrollPane.setBounds(10, 67, 589, 270);
 		contentPanel.add(scrollPane);
 
 		table = new JTable();
@@ -64,18 +68,13 @@ public class ListadoVentas extends JDialog {
 				"Precio", "Fecha" };
 		model.setColumnIdentifiers(columnas);
 		table.setModel(model);
-
-		btnProcesar = new JButton("Procesar");
-		btnProcesar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				actionPerformedBtnProcesar(e);
-			}
-		});
-		btnProcesar.setBounds(10, 75, 89, 23);
-		contentPanel.add(btnProcesar);
-	}
-
-	protected void actionPerformedBtnProcesar(ActionEvent e) {
+		
+		lblListadoDeVentas = new JLabel("Listado de todas las ventas");
+		lblListadoDeVentas.setForeground(new Color(0, 153, 255));
+		lblListadoDeVentas.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblListadoDeVentas.setBounds(10, 21, 520, 35);
+		contentPanel.add(lblListadoDeVentas);
+		
 		listarTablaVentas();
 	}
 

@@ -186,11 +186,16 @@ public class Home extends JDialog {
 		});
 		panel.add(btnGenerarReporte);
 
-		btnConfig = new JButton("Configuración");
+		btnConfig = new JButton("Salir");
+		btnConfig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnConfig(e);
+			}
+		});
 		btnConfig.setBackground(new Color(255, 255, 255));
 		btnConfig.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnConfig.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnConfig.setIcon(new ImageIcon(Home.class.getResource("/imagenes/icons8-configurador-64.png")));
+		btnConfig.setIcon(new ImageIcon(Home.class.getResource("/imagenes/icons8-salida-64.png")));
 		panel.add(btnConfig);
 
 		panel_1 = new JPanel();
@@ -351,6 +356,11 @@ public class Home extends JDialog {
 		menuBar.add(mnNewMenu_4);
 		
 		mntmNewMenuItem_3 = new JMenuItem("Salir");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		mnNewMenu_4.add(mntmNewMenuItem_3);
 	}
 
@@ -435,4 +445,7 @@ public class Home extends JDialog {
 	protected void actionPerformedItemBuscarProducto(ActionEvent e) {
         ConsultarProducto.abrirVentana();
     }
+	protected void actionPerformedBtnConfig(ActionEvent e) {
+		System.exit(0);
+	}
 }

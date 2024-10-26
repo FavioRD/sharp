@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 
 import arreglos.ArregloClientes;
 import clases.Cliente;
+import utilidades.Colores;
 
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
@@ -67,19 +68,18 @@ public class EliminarCliente extends JFrame {
 		layeredPane.add(cboCliente, Integer.valueOf(2));
 
 		// Botón Aceptar con letras negras y borde verde
-		JButton btnAceptar = new JButton("Aceptar");
+		JButton btnAceptar = new JButton("ACEPTAR");
+		btnAceptar.setBorderPainted(false);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnAceptar(e);
 			}
 		});
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnAceptar.setBounds(121, 301, 164, 52);
-		btnAceptar.setForeground(Color.BLACK); // Texto negro
-		btnAceptar.setBackground(UIManager.getColor("Button.background"));
+		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btnAceptar.setBounds(133, 301, 144, 42);
+		btnAceptar.setForeground(new Color(255, 255, 255)); // Texto negro
+		btnAceptar.setBackground(Colores.VERDE);
 		btnAceptar.setBorder(new LineBorder(new Color(0, 255, 0), 2)); // Borde verde
-		btnAceptar.setOpaque(false);
-		btnAceptar.setContentAreaFilled(false);
 		layeredPane.add(btnAceptar, Integer.valueOf(2));
 
 		btnAceptar.addMouseListener(new MouseAdapter() {
@@ -93,19 +93,18 @@ public class EliminarCliente extends JFrame {
 		});
 
 		// Botón Cancelar con letras negras y borde rojo
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBorderPainted(false);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actionPerformedBtnCancelar(e);
 			}
 		});
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnCancelar.setBounds(295, 301, 164, 52);
-		btnCancelar.setForeground(Color.BLACK); // Texto negro
-		btnCancelar.setBackground(UIManager.getColor("Button.background"));
-		btnCancelar.setBorder(new LineBorder(new Color(255, 0, 0), 2)); // Borde rojo
-		btnCancelar.setOpaque(false);
-		btnCancelar.setContentAreaFilled(false);
+		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btnCancelar.setBounds(307, 301, 144, 42);
+		btnCancelar.setForeground(new Color(255, 255, 255)); // Texto negro
+		btnCancelar.setBackground(Colores.ROJO);
+		btnCancelar.setBorder(new LineBorder(new Color(255, 0, 0), 2));
 		layeredPane.add(btnCancelar, Integer.valueOf(2));
 
 	

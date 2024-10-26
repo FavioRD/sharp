@@ -96,5 +96,18 @@ public class Archivo {
 			e.printStackTrace();
 		}
 	}
+	
+	public String leerArchivo() {
+		try {
+			java.util.Scanner scanner = new java.util.Scanner(new File(ruta));
+			while (scanner.hasNextLine()) {
+				System.out.println(scanner.nextLine());
+			}
+			scanner.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

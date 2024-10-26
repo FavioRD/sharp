@@ -24,6 +24,7 @@ public class ProductosStockMin extends JFrame  {
 	private JScrollPane scrollPane;
 	private JTable tblStockmin;
 	private DefaultTableModel modelo;
+	private JLabel lblListadoDeProductos;
 
 	/**
 	 * Launch the application.
@@ -33,6 +34,7 @@ public class ProductosStockMin extends JFrame  {
 			public void run() {
 				try {
 					ProductosStockMin frame = new ProductosStockMin();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +57,7 @@ public class ProductosStockMin extends JFrame  {
 		contentPane.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 49, 622, 370);
+		scrollPane.setBounds(10, 62, 622, 357);
 		contentPane.add(scrollPane);
 
 		tblStockmin = new JTable();
@@ -69,6 +71,12 @@ public class ProductosStockMin extends JFrame  {
 		modelo.addColumn("Stock Actual");
 		modelo.addColumn("Stock Minimo");
 		tblStockmin.setModel(modelo);
+		
+		lblListadoDeProductos = new JLabel("Productos con stock por debajo del stock mínimo");
+		lblListadoDeProductos.setForeground(new Color(0, 153, 255));
+		lblListadoDeProductos.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblListadoDeProductos.setBounds(10, 16, 609, 35);
+		contentPane.add(lblListadoDeProductos);
 		ajustarAnchoColumnas();
 		listar();
 	}

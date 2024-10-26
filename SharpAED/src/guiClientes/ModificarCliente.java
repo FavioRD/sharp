@@ -191,7 +191,7 @@ public class ModificarCliente extends JFrame {
 		Cliente cliente = new Cliente(txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(),
 				txtTelefono.getText(), txtDni.getText());
 		ArregloClientes.modificarCliente(i, cliente);
-
+		ArregloClientes.actualizarClientes();
 		JOptionPane.showMessageDialog(null, "Cliente modificado");
 		this.dispose();
 	}

@@ -92,6 +92,7 @@ public class EliminarProducto extends JFrame implements ActionListener {
 
 		if (i != -1 && ArregloProductos.getNroProducto() > 0) {
 			ArregloProductos.eliminarProducto(i);
+			ArregloProductos.actualizarProductos();
 			JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
 			actualizarProductos();
 		} else {
