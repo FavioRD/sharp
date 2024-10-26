@@ -12,6 +12,11 @@ import javax.swing.JTextField;
 import clases.Producto;
 import utilidades.Validacion;
 import arreglos.ArregloProductos;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class ModificarProducto extends JDialog {
 
@@ -25,6 +30,8 @@ public class ModificarProducto extends JDialog {
 	private JButton btnRegistrar;
 	private JButton btnCancelar;
 	private ArregloProductos arregloProducto; // Aquí estará el arreglo de productos
+	private JPanel panel;
+	private JLabel lblModificarProducto;
 
 	/**
 	 * Launch the application.
@@ -45,17 +52,12 @@ public class ModificarProducto extends JDialog {
 	 */
 	public ModificarProducto() {
 
-		setBounds(100, 100, 579, 359);
+		setBounds(100, 100, 319, 423);
 		getContentPane().setLayout(null);
-
-		JTextArea txtS = new JTextArea();
-		txtS.setText("MODIFICAR PRODUCTO");
-		txtS.setBounds(280, 0, 283, 320);
-		getContentPane().add(txtS);
 
 		
 		cboProducto = new JComboBox<Producto>();
-		cboProducto.setBounds(41, 30, 188, 22);
+		cboProducto.setBounds(57, 64, 188, 22);
 		getContentPane().add(cboProducto);
 
 	
@@ -67,50 +69,45 @@ public class ModificarProducto extends JDialog {
 				actionPerformedcboProducto(e);
 			}
 		});
+		
+		panel = new JPanel();
+		panel.setBounds(41, 109, 221, 176);
+		getContentPane().add(panel);
+		panel.setLayout(new GridLayout(0, 2, 0, 10));
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(10, 107, 109, 14);
-		getContentPane().add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("Precio ");
-		lblNewLabel_2.setBounds(10, 143, 46, 14);
-		getContentPane().add(lblNewLabel_2);
-
-		JLabel lblNewLabel_3 = new JLabel("Stock actual");
-		lblNewLabel_3.setBounds(10, 181, 82, 14);
-		getContentPane().add(lblNewLabel_3);
-
-		JLabel lblNewLabel_4 = new JLabel("Stock minimo");
-		lblNewLabel_4.setBounds(10, 220, 82, 14);
-		getContentPane().add(lblNewLabel_4);
-
-		JLabel lblNewLabel_5 = new JLabel("Stock maximo");
-		lblNewLabel_5.setBounds(10, 263, 82, 14);
-		getContentPane().add(lblNewLabel_5);
+		panel.add(lblNewLabel_1);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(143, 104, 86, 20);
-		getContentPane().add(txtNombre);
+		panel.add(txtNombre);
 		txtNombre.setColumns(10);
+		
+				JLabel lblNewLabel_2 = new JLabel("Precio ");
+				panel.add(lblNewLabel_2);
 
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(145, 140, 86, 20);
-		getContentPane().add(txtPrecio);
+		panel.add(txtPrecio);
 		txtPrecio.setColumns(10);
+		
+				JLabel lblNewLabel_3 = new JLabel("Stock actual");
+				panel.add(lblNewLabel_3);
 
 		txtStockAct = new JTextField();
-		txtStockAct.setBounds(145, 178, 86, 20);
-		getContentPane().add(txtStockAct);
+		panel.add(txtStockAct);
 		txtStockAct.setColumns(10);
+		
+				JLabel lblNewLabel_4 = new JLabel("Stock minimo");
+				panel.add(lblNewLabel_4);
 
 		txtStockMin = new JTextField();
-		txtStockMin.setBounds(143, 217, 86, 20);
-		getContentPane().add(txtStockMin);
+		panel.add(txtStockMin);
 		txtStockMin.setColumns(10);
+		
+				JLabel lblNewLabel_5 = new JLabel("Stock maximo");
+				panel.add(lblNewLabel_5);
 
 		txtStockMax = new JTextField();
-		txtStockMax.setBounds(145, 260, 86, 20);
-		getContentPane().add(txtStockMax);
+		panel.add(txtStockMax);
 		txtStockMax.setColumns(10);
 
 		btnRegistrar = new JButton("Registrar");
@@ -119,12 +116,19 @@ public class ModificarProducto extends JDialog {
 				actionPerformedBtnRegistrar(e);
 			}
 		});
-		btnRegistrar.setBounds(20, 288, 89, 23);
+		btnRegistrar.setBounds(42, 311, 89, 23);
 		getContentPane().add(btnRegistrar);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(130, 288, 89, 23);
+		btnCancelar.setBounds(172, 311, 89, 23);
 		getContentPane().add(btnCancelar);
+		
+		lblModificarProducto = new JLabel("Modificar Producto");
+		lblModificarProducto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModificarProducto.setForeground(new Color(0, 153, 255));
+		lblModificarProducto.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblModificarProducto.setBounds(42, 33, 218, 20);
+		getContentPane().add(lblModificarProducto);
 	}
 
 

@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import arreglos.ArregloClientes;
 import clases.Cliente;
+import utilidades.Colores;
 import utilidades.Validacion;
 
 import java.awt.Color;
@@ -69,7 +70,7 @@ public class ModificarCliente extends JFrame {
 
 		setTitle("Modificar Cliente");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 623, 416);
+		setBounds(100, 100, 327, 407);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,7 +79,8 @@ public class ModificarCliente extends JFrame {
 		contentPane.setLayout(null);
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 264, 377);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 311, 377);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -92,52 +94,52 @@ public class ModificarCliente extends JFrame {
 				actionPerformedcboClientes(e);
 			}
 		});
-		cboClientes.setBounds(31, 70, 201, 22);
+		cboClientes.setBounds(55, 70, 201, 22);
 		panel.add(cboClientes);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(131, 118, 101, 20);
+		txtNombre.setBounds(155, 115, 101, 20);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtApellido = new JTextField();
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(131, 149, 101, 20);
+		txtApellido.setBounds(155, 146, 101, 20);
 		panel.add(txtApellido);
 
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(131, 180, 101, 20);
+		txtDireccion.setBounds(155, 177, 101, 20);
 		panel.add(txtDireccion);
 
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(131, 211, 101, 20);
+		txtTelefono.setBounds(155, 208, 101, 20);
 		panel.add(txtTelefono);
 
 		txtDni = new JTextField();
 		txtDni.setColumns(10);
-		txtDni.setBounds(131, 242, 101, 20);
+		txtDni.setBounds(155, 239, 101, 20);
 		panel.add(txtDni);
 
 		lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(31, 121, 46, 14);
+		lblNewLabel_1.setBounds(55, 118, 46, 14);
 		panel.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel("Apellido");
-		lblNewLabel_2.setBounds(31, 152, 46, 14);
+		lblNewLabel_2.setBounds(55, 149, 46, 14);
 		panel.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JLabel("Direccion");
-		lblNewLabel_3.setBounds(31, 183, 90, 14);
+		lblNewLabel_3.setBounds(55, 180, 90, 14);
 		panel.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("Telefono");
-		lblNewLabel_4.setBounds(31, 214, 90, 14);
+		lblNewLabel_4.setBounds(55, 211, 90, 14);
 		panel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("DNI");
-		lblNewLabel_5.setBounds(31, 245, 90, 14);
+		lblNewLabel_5.setBounds(55, 242, 90, 14);
 		panel.add(lblNewLabel_5);
 
 		btnModificarCliente = new JButton("Registrar");
@@ -146,17 +148,18 @@ public class ModificarCliente extends JFrame {
 				actionPerformedBtnModificarCliente(e);
 			}
 		});
-		btnModificarCliente.setBounds(31, 296, 89, 23);
+		btnModificarCliente.setBounds(55, 288, 89, 23);
 		panel.add(btnModificarCliente);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(143, 296, 89, 23);
+		btnCancelar.setBounds(167, 288, 89, 23);
 		panel.add(btnCancelar);
 
-		lblNewLabel = new JLabel("Modificar Producto");
+		lblNewLabel = new JLabel("Modificar Cliente");
+		lblNewLabel.setForeground(Colores.AZUL);
+		lblNewLabel.setBounds(79, 23, 153, 20);
+		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(364, 57, 153, 20);
-		contentPane.add(lblNewLabel);
 	}
 
 	protected void actionPerformedcboClientes(ActionEvent e) {
